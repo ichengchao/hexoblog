@@ -38,9 +38,9 @@ String sayHello = (String) mbeanServer.invoke(objectName, "sayHello", opParams, 
 ```xml
 <!-- pom.xml添加依赖 -->
 <dependency>
-	<groupId>org.glassfish.external</groupId>
-	<artifactId>opendmk_jdmkrt_jar</artifactId>
-	<version>1.0-b01-ea</version>
+  <groupId>org.glassfish.external</groupId>
+  <artifactId>opendmk_jdmkrt_jar</artifactId>
+  <version>1.0-b01-ea</version>
 </dependency>
 ```  
 

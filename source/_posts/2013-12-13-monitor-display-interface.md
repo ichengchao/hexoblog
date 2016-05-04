@@ -8,18 +8,18 @@ comments: true
 
 最近折腾了显示器，发现接口类型很多。总结了一下其实就那么几种。
 <ul>
-	<li>VGA</li>
-	<li>DVI</li>
-	<li>HDMI</li>
-	<li>DisplayPort</li>
+  <li>VGA</li>
+  <li>DVI</li>
+  <li>HDMI</li>
+  <li>DisplayPort</li>
 </ul>
 不细讲，一般人只要知道接口是从上到下越来越先进。
 <h1><span style="color: #000000;">VGA (Video Graphics Array):</span></h1>
 <ul>
-	<li>已经出现好多年,用的最广泛.基本的显卡和显示器都支持</li>
-	<li>传输的是模拟信号,信号转换会损失画面的质量</li>
-	<li>最大分辩率是2048x1536, 60Hz</li>
-	<li>逐渐被淘汰</li>
+  <li>已经出现好多年,用的最广泛.基本的显卡和显示器都支持</li>
+  <li>传输的是模拟信号,信号转换会损失画面的质量</li>
+  <li>最大分辩率是2048x1536, 60Hz</li>
+  <li>逐渐被淘汰</li>
 </ul>
 <h1><span style="color: #000000;">DVI(Digital Visual Interface)</span></h1>
 
@@ -69,20 +69,20 @@ comments: true
 </tbody>
 </table>
 <ul>
-	<li>种类比较多,主要由两个因素决定
+  <li>种类比较多,主要由两个因素决定
 <ol>
-	<li>是否兼容模拟信号</li>
-	<li>是否为双通道</li>
+  <li>是否兼容模拟信号</li>
+  <li>是否为双通道</li>
 </ol>
 </li>
-	<li>支持的显卡和显示器也非常多</li>
-	<li>可以传输音频信息,但是由于标准不统一,基本没人用</li>
+  <li>支持的显卡和显示器也非常多</li>
+  <li>可以传输音频信息,但是由于标准不统一,基本没人用</li>
 </ul>
 <h1><span style="color: #000000;">HDMI (High Definition Multimedia Interface)</span></h1>
 <ul>
-	<li>基于DVI接口发展而来</li>
-	<li>电视机上见得最多,基本是属于标配,同时传输视频和音频,众多厂商支持</li>
-	<li>好点的显卡也提供这个接口</li>
+  <li>基于DVI接口发展而来</li>
+  <li>电视机上见得最多,基本是属于标配,同时传输视频和音频,众多厂商支持</li>
+  <li>好点的显卡也提供这个接口</li>
 </ul>
 <table border="1">
 <tbody>
@@ -161,8 +161,8 @@ comments: true
 <h2></h2>
 <h1><span style="color: #000000;">DisplayPort</span></h1>
 <ul>
-	<li>苹果设备常见</li>
-	<li>是HDMI的主要竞争者</li>
-	<li>应该会越来越普及,很可能是以后的主流接口</li>
-	<li>1.3最高达 21.6 Gbit/s 的带宽，可支持 4000*2000 60Hz 的高分辨率显示屏</li>
+  <li>苹果设备常见</li>
+  <li>是HDMI的主要竞争者</li>
+  <li>应该会越来越普及,很可能是以后的主流接口</li>
+  <li>1.3最高达 21.6 Gbit/s 的带宽，可支持 4000*2000 60Hz 的高分辨率显示屏</li>
 </ul>

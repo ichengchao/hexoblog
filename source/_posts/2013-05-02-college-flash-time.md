@@ -27,7 +27,7 @@ flash动画的功能超级强大,加上能用actionscript控制一些东西.*act
 五一在家,从就的硬盘中翻出了大学时的一些作品,放上来权当回忆吧.
 
 <ul>
-	<li><a href="http://www.chengchao.name/play/site_v1/" target="_blank">site_v1</a></li>
-	<li><a href="http://www.chengchao.name/play/site_v2/" target="_blank">site_v2</a></li>
-	<li><a href="http://www.chengchao.name/play/site_work/" target="_blank">site_work</a></li>
+  <li><a href="http://www.chengchao.name/play/site_v1/" target="_blank">site_v1</a></li>
+  <li><a href="http://www.chengchao.name/play/site_v2/" target="_blank">site_v2</a></li>
+  <li><a href="http://www.chengchao.name/play/site_work/" target="_blank">site_work</a></li>
 </ul>

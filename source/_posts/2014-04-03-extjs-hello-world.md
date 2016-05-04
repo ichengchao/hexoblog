@@ -36,9 +36,9 @@ index.html
 ```html
 <html>
 <head>
-	<link rel="stylesheet" type="text/css"	href="extjslibv4/resources/css/ext-all.css" />
-	<script type="text/javascript" src="extjslibv4/ext-all.js"></script>
-	<script type="text/javascript" src="index.js"></script>
+  <link rel="stylesheet" type="text/css"	href="extjslibv4/resources/css/ext-all.css" />
+  <script type="text/javascript" src="extjslibv4/ext-all.js"></script>
+  <script type="text/javascript" src="index.js"></script>
 </head>
 <body>
 </body>
@@ -49,8 +49,8 @@ index.js
 
 ```js
 Ext.onReady(function() {
-			Ext.MessageBox.alert('Hello', 'extjs.');
-		})
+  		Ext.MessageBox.alert('Hello', 'extjs.');
+  	})
 ```
 
 运行浏览器,输入地址 http://localhost/index.html  

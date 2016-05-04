@@ -110,33 +110,33 @@ public class Test {
 在很多情况下是结合spring使用的,在web.xml中的配置文件如下:
 
 ```xml
-	<context-param>
-		<param-name>log4jConfigLocation</param-name>
-		<param-value>classpath:log4j.xml</param-value>
-	</context-param>
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.xml</param-value>
+    </context-param>
 
-	<listener>
-		<listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
-	</listener>
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
 ```
 
 从源代码中可以看出就是调用log4j的PropertyConfigurator.configure方法.  
 
 ```java
-	public static void initLogging(String location) throws FileNotFoundException {
-		String resolvedLocation = SystemPropertyUtils.resolvePlaceholders(location);
-		URL url = ResourceUtils.getURL(resolvedLocation);
-		if (ResourceUtils.URL_PROTOCOL_FILE.equals(url.getProtocol()) && !ResourceUtils.getFile(url).exists()) {
-			throw new FileNotFoundException("Log4j config file [" + resolvedLocation + "] not found");
-		}
+    public static void initLogging(String location) throws FileNotFoundException {
+        String resolvedLocation = SystemPropertyUtils.resolvePlaceholders(location);
+        URL url = ResourceUtils.getURL(resolvedLocation);
+        if (ResourceUtils.URL_PROTOCOL_FILE.equals(url.getProtocol()) && !ResourceUtils.getFile(url).exists()) {
+          throw new FileNotFoundException("Log4j config file [" + resolvedLocation + "] not found");
+        }
 
-		if (resolvedLocation.toLowerCase().endsWith(XML_FILE_EXTENSION)) {
-			DOMConfigurator.configure(url);
-		}
-		else {
-			PropertyConfigurator.configure(url);
-		}
-	}
+        if (resolvedLocation.toLowerCase().endsWith(XML_FILE_EXTENSION)) {
+          DOMConfigurator.configure(url);
+        }
+        else {
+          PropertyConfigurator.configure(url);
+        }
+    }
 ```
 
 ### 如何工作
@@ -157,7 +157,7 @@ public void info(Object message) {
 第二步:一直会调用父类中的`c.aai.appendLoopOnAppenders(event);`,除非把c.additive设置成false,默认为true
 
 ```java
-	protected void forcedLog(String fqcn, Priority level, Object message, Throwable t) {
+    protected void forcedLog(String fqcn, Priority level, Object message, Throwable t) {
         callAppenders(new LoggingEvent(fqcn, this, level, message, t));
     }
     public void callAppenders(LoggingEvent event) {
@@ -207,31 +207,31 @@ public void info(Object message) {
   //      - append();
   //        - checkEntryConditions();
   //        - subAppend();
-	public void append(LoggingEvent event) {
-	    if (!checkEntryConditions()) {
-	        return;
-	    }
-	    subAppend(event);
-	}
+    public void append(LoggingEvent event) {
+        if (!checkEntryConditions()) {
+            return;
+        }
+        subAppend(event);
+    }
   //由于ConsoleAppender没有继承subAppend方法,所以实际就是调用了WriterAppender的subAppend方法
-  	protected void subAppend(LoggingEvent event) {
-	    this.qw.write(this.layout.format(event));
-	    if (layout.ignoresThrowable()) {
-	        String[] s = event.getThrowableStrRep();
-	        if (s != null) {
-	            int len = s.length;
-	            for (int i = 0; i < len; i++) {
-	                this.qw.write(s[i]);
-	                this.qw.write(Layout.LINE_SEP);
-	            }
-	        }
-	    }
-	    if (shouldFlush(event)) {
-	        this.qw.flush();
-	    }
-	}
-	//其中的qw由ConsoleAppender初始化
-	public void activateOptions() {
+      protected void subAppend(LoggingEvent event) {
+        this.qw.write(this.layout.format(event));
+        if (layout.ignoresThrowable()) {
+            String[] s = event.getThrowableStrRep();
+            if (s != null) {
+                int len = s.length;
+                for (int i = 0; i < len; i++) {
+                    this.qw.write(s[i]);
+                    this.qw.write(Layout.LINE_SEP);
+                }
+            }
+        }
+        if (shouldFlush(event)) {
+            this.qw.flush();
+        }
+    }
+    //其中的qw由ConsoleAppender初始化
+    public void activateOptions() {
         if (follow) {
             if (target.equals(SYSTEM_ERR)) {
                setWriter(createWriter(new SystemErrStream()));

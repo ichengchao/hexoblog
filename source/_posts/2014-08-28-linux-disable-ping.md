@@ -10,7 +10,7 @@ tags:
  - tech
 ---
 
-###Linux 禁ping和开启ping操作,必须root用户执行###
+### Linux 禁ping和开启ping操作,必须root用户执行
 
 禁用:  
 `# echo 1 > /proc/sys/net/ipv4/icmp_echo_ignore_all`

@@ -32,8 +32,8 @@ F12看了一下控制台输出,大概意思是:  **脚本因 mime 类型不匹�
 ```xml
 <IfModule mod_headers.c>
 #       Header set X-Content-Type-Options "nosniff"
-		Header set X-XSS-protection "mode=block"
-		RequestHeader unset Range
+    Header set X-XSS-protection "mode=block"
+    RequestHeader unset Range
 </IfModule>
 ```
 搞定!

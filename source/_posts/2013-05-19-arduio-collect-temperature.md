@@ -17,10 +17,10 @@ tags:
 
 所需材料:
 <ul>
-	<li>arduino uno</li>
-	<li>面包板,杜邦线</li>
-	<li>LM35D温度传感器</li>
-	<li>扩展网络模块</li>
+  <li>arduino uno</li>
+  <li>面包板,杜邦线</li>
+  <li>LM35D温度传感器</li>
+  <li>扩展网络模块</li>
 </ul>
 连接好后的效果(连线比较简单):
 

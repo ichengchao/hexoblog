@@ -54,7 +54,7 @@ public class MyLoginUrlAuthenticationEntryPoint extends LoginUrlAuthenticationEn
 
 ```xml
 <b:bean id="loginUrlAuthenticationEntryPoint"
-		class="name.chengchao.springtest.MyLoginUrlAuthenticationEntryPoint" >
-		<b:constructor-arg value="/login.do"></b:constructor-arg>
-	</b:bean>
+  	class="name.chengchao.springtest.MyLoginUrlAuthenticationEntryPoint" >
+  	<b:constructor-arg value="/login.do"></b:constructor-arg>
+  </b:bean>
 ```
