@@ -28,5 +28,10 @@
     "gulp": "^3.9.0",
     "gulp-jshint": "^1.12.0",
     "jshint-stylish": "^2.1.0"
+  },
+  "dependencies": {
+    "hexo-generator-archive": "^0.1.4",
+    "hexo-generator-index": "^0.2.0",
+    "hexo-generator-tag": "^0.2.0"
   }
 }
