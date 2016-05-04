@@ -11,10 +11,10 @@ tags:
 
 ![logging service](http://chengchao.name/resource-container/image/log4j-logo.jpg)
 
-###说明
+### 说明
 分析的版本是1.2.17,跟最新的log4j2可能有较大出入.[下载地址](https://logging.apache.org/log4j/1.2/download.html)
 解压缩后,直接导入成maven工程即可. 
-###代码结构
+### 代码结构
 Log4J核心的类：
 
 - Logger:最核心的类, Most logging operations, except configuration, are done through this class.
@@ -22,7 +22,7 @@ Log4J核心的类：
 - Appender:决定日志输出的目的地
 - Layout:日志格式
 
-###测试代码
+### 测试代码
 ```java
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Logger;
@@ -49,7 +49,7 @@ public class Test {
 ```
 这是最简单的测试代码,不需要配置文件.
 
-###配置文件加载
+### 配置文件加载
 更多情况下,我们需要使用自己的配置文件,那配置文件又是怎么加载的呢?其实也很简单,在启动的时候org.apache.log4j.LogManager中的static方法会加载log4j的配置文件,如果指定了log4j.configuration,则从指定的文件加载,否则就先读取log4j.xml格式的配置文件,如果没有再读取log4j.properties的文件,如果需要测试此特性,可以在运行的时候加上`-Dlog4j.configuration=myLog4jConfig.properties`即可.  
 
 ```java
@@ -106,7 +106,7 @@ public class Test {
 不管是从哪个入口进入,最终会调用`org.apache.log4j.spi.Configurator.doConfigure()`方法.
 
 
-###Spring中的初始化
+### Spring中的初始化
 在很多情况下是结合spring使用的,在web.xml中的配置文件如下:
 
 ```xml
@@ -139,7 +139,7 @@ public class Test {
 	}
 ```
 
-###如何工作
+### 如何工作
 
 当我们调用`logger.info("msg")`的时候,到底是怎么发生的呢?  
 拿最简单的org.apache.log4j.ConsoleAppender举例子

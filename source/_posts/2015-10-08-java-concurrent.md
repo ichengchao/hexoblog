@@ -8,7 +8,7 @@ tags:
 
 ---
 
-###为什么会有并发问题
+### 为什么会有并发问题
 
 - 并发程序的关键在于对共享的，可变的状态进行访问管理
 - 不可变对象永远是线程安全的
@@ -18,7 +18,7 @@ tags:
 
 
 
-###为什么volatile要和compareAndSet配合起来使用?
+### 为什么volatile要和compareAndSet配合起来使用?
 
 ```java
     public final long getAndIncrement() {
@@ -38,7 +38,7 @@ tags:
 - 所以在getAndIncrement操作中cas保证原子性,volatile保证内存可见性,两者共同完成无锁的原子操作
 
 
-###使用AtomicXXX的两个重要原因
+### 使用AtomicXXX的两个重要原因
 
 - 性能好很多
 - 使用方便

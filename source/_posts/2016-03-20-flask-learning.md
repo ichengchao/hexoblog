@@ -8,7 +8,7 @@ tags:
   
 ---
 
-###环境初始化
+### 环境初始化
 - 安装 [python](https://www.python.org/)
 - 安装 [pyenv](https://github.com/yyuu/pyenv),用于管理python的版本
 - 安装 [pip](https://pip.pypa.io/en/stable/installing/),用于管理python的依赖,最好是在virtualenv的基础上安装
@@ -34,7 +34,7 @@ pip install Flask
 ```
 这样环境都初始化好了.
 
-###最小应用
+### 最小应用
 flask的[官方文档](http://flask.pocoo.org/docs/0.10/)中有最小应用的示例,稍加修改如下:
 
 ```python
@@ -66,7 +66,7 @@ if __name__ == '__main__':
 
 直接在IDE中运行,就能通过`127.0.0.1:8888`访问了.
 
-###用gunicorn部署
+### 用gunicorn部署
 当然要在生成环境中部署的话,就需要使用容器了.比较有名的就是`gunicorn`
 
 ```sh

@@ -10,12 +10,12 @@ tags:
 
 ![](http://www.chengchao.name/resource-container/image/git.jpg)
 
-###环境准备
+### 环境准备
 想要学习git,就必须先有个git环境.最有名的当然就是Github.不过访问速度时好时坏,所以建议用一个国内的git仓库.我推荐的是oschina: [http://git.oschina.net/](http://git.oschina.net/) 使用方式跟Github几乎一样,速度快了很多.btw:他家的maven仓库的速度也不错.[http://maven.oschina.net/home.html](http://maven.oschina.net/home.html)
 申请好之后,导入ssh公钥就可以开始测试了.
 
 
-###配置
+### 配置
 
 ```sh
 git config --global user.name "charles"
@@ -49,7 +49,7 @@ git co -b 新建分支名称
 git b -a
 ```
 
-###使用
+### 使用
 基本的使用命令,很多地方都有,这边就不做介绍了.下面我通过一个测试项目来模拟一个真实的开发过程.
 首先在git仓库新建一个项目`git-test`.  
 第一步就是先导出到本地.命令很简单,就是git clone,可以选择http和ssh两种方式,我使用的ssh.由于之前已经把公钥导入到git仓库中.所以后续的操作都不用再输入用户名和密码了.  
@@ -171,7 +171,7 @@ git push --force
 ```
 搞定.当然也可以选择使用`git revert`来回滚,当使用`git revert`时,原来的featureA分支将不能再次合并.更多关于git reset和git revert的区别参见[该文章](http://yijiebuyi.com/blog/8f985d539566d0bf3b804df6be4e0c90.html)
 
-###使用技巧
+### 使用技巧
 好用的命令
 
 ```sh

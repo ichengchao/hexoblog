@@ -9,21 +9,21 @@ tags:
 
 ---
 
-###虚拟机安装
+### 虚拟机安装
 
 [VisualBox](https://www.virtualbox.org)  
 虽然有很多其他的选择,但是这个已经够用了,而且免费
 
-###Linux版本选择
+### Linux版本选择
 之前一直用ubuntu,但是感觉现在的ubuntu越来越臃肿,而且UI也越来越丑.于是就想找一个比较轻量级的版本.  
 发现[Lubuntu](http://lubuntu.net/)完全能满足我的要求
 
-###安装须知
+### 安装须知
 虚拟机中的安装方式就不详细介绍了,就是一步步往下点就行了.
 有一点需要注意的是:安装的时候语言选English,选中文的话会有乱码.
 安装完系统后,在设备-->安装增强功能.点击后会挂载一个ISO,之后在命令行运行. 
 
-###语言配置
+### 语言配置
 按照[ubuntu中文字体](http://wiki.ubuntu.com.cn/%E5%AD%97%E4%BD%93)安装中文字体
 
 ```sh
@@ -32,7 +32,7 @@ sudo apt-get install ttf-wqy-microhei  #文泉驿-微米黑
 
 在setting中把字体language support中设置成`汉语-->apply-->重启`  
 
-###系统配置
+### 系统配置
 重新安装vim
 
 ```sh

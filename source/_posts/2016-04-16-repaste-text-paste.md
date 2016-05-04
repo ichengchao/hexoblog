@@ -8,12 +8,12 @@ tags:
   
 ---
 
-###为什么要这么做？
+### 为什么要这么做？
 - 直接把命令的输出（比如grep/awk/sed/find或是你的程序输出结果）放到剪切板上，这么就可以在IM中CTRL + V粘贴后发出去。 
 - 避免操作的繁琐和跳跃：把结果输出到文件、用文本编辑器打开文件、选中文本、CTRL + C。
 通过命令将文件内容拷贝到剪切板，以避免拷贝错误、操作的跳跃（跳到文件编辑器）
 
-###Windows
+### Windows
 使用系统自带的clip命令
 >位于C:\Windows\system32\clip.exe
 
@@ -33,7 +33,7 @@ echo | clip
 
 ```
 
-###Linux
+### Linux
 
 使用xsel命令
 
@@ -48,7 +48,7 @@ xsel < README.TXT
 # 清空剪贴板
 xsel -c
 ```
-###Mac
+### Mac
 使用pbcopy命令,对应有个pbpaste命令
 
 ```sh
