@@ -8,8 +8,6 @@ tags:
   
 ---
 
-# spring security
-
 ### 背景知识
 什么是spring security.官方解释:
 >Spring Security provides comprehensive security services for Java EE-based enterprise software applications.   
