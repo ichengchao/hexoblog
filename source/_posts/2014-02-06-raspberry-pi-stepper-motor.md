@@ -2,14 +2,11 @@
 layout: post
 title: raspberry pi控制步进电机+摄像头
 date: 2014-02-06 22:09
-author: charles
-comments: true
 tags:
  - raspberrypi
- 
 ---
 
-###控制代码###
+### 控制代码
 
 ```python
 #http 服务使用web.py实现
@@ -76,8 +73,8 @@ if __name__ == "__main__":
   
   
 ```
-<br/>
-###页面代码###
+
+### 页面代码
 
 ```html
 <html>

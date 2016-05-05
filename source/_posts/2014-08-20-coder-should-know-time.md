@@ -2,20 +2,20 @@
 layout: post
 title: 转摘-程序员应该知道的耗时
 date: 2014-08-20 00:44
-author: charles
-comments: true
 tags:
  - tech
  - repaste
  
 ---
 
+### 单位
+
 - 1纳秒(ns) = 1000皮秒(ps)
 - 1纳秒(ns) = 0.001微秒(μs)
 - 1纳秒(ns) = 0.000001毫秒(ms) 　
 - 1纳秒(ns) = 0.000000001秒(s)
 
-###文字版###
+### 文字版
 
 ```sh
 L1 cache reference ......................... 0.5 ns
