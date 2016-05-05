@@ -13,7 +13,7 @@ tags:
 >Spring Security provides comprehensive security services for Java EE-based enterprise software applications.   
 
 简单的说就是给应用提供安全服务的.那安全服务要解决哪里问题呢?  
-我认为主要要解决这两个问题:
+我认为主要是解决这两个问题:
 
 * 你是谁? (authentication,身份验证)
 * 你能干什么? (authorization,访问控制)
@@ -21,7 +21,7 @@ tags:
 对应到spring security中两个重要的概念`authentication`和`authorization`
 
 ### Hello World
-在一个使用spring框架的web应用中增加spring security的最简功能是非常之简单的.  
+在一个使用spring框架的web应用中增加spring security是非常之简单的.  
 第一步:在pom.xml中增加相应的依赖,这里以4.0.3为例.
 
 ```xml
@@ -37,7 +37,7 @@ tags:
 </dependency>
 ```
 
-第二步:在web.xml中配置filter,需要注意的是这个配置中的`springSecurityFilterChain`这个名称是不能随意自定义的,后面我们会再解释原因.
+第二步:在web.xml中配置filter,需要注意的是这个配置中的`springSecurityFilterChain`这个名称是不能随便填的,后面再解释原因.
 
 ```xml
 <filter>
@@ -78,14 +78,36 @@ tags:
 
 ### 初窥
 那spring security又是怎么工作的呢?  
-这一切都得从web.xml的filter配置说起.可以spring security配置的filter是`org.springframework.web.filter.DelegatingFilterProxy`这是什么东东啊?看看这个类的javadoc解释就能明白:
+这一切都得从web.xml的filter配置说起.spring security配置的filter是`org.springframework.web.filter.DelegatingFilterProxy`这是什么东东啊?看看这个类的javadoc解释就能明白:
 >Proxy for a standard Servlet Filter, delegating to a Spring-managed bean that implements the Filter interface. 
 
-这就是一个简单的代理类,代理spring container中实现了servlet filter的类,那如果很多实现了filter类该怎么找到想要的那个呢?通过`<filter-name>`中定义的名称.所以上面的web.xml配置中我提到了这个名称不能随意修改.而真正的spring security使用的filter是`org.springframework.security.filterChainProxy`.知道了入口就好办了,我们再接着分析这个filter chain中有哪些核心的东东.
+这就是一个简单的代理类,代理spring container中实现了servlet filter的类,那如果很多实现了filter类该怎么找到想要的那个呢?通过`<filter-name>`中定义的名称.所以上面的web.xml配置中我提到了这个名称不能随意修改.而真正的spring security使用的filter是`org.springframework.security.filterChainProxy`.这个是proxy负责把所有的filter都串起来.下面是官方说明:
+
+
+1. **ChannelProcessingFilter**, because it might need to redirect to a different protocol
+
+2. **SecurityContextPersistenceFilter**, so a *SecurityContext* can be set up in the *SecurityContextHolder* at the beginning of a web request, and any changes to the *SecurityContext* can be copied to the *HttpSession* when the web request ends (ready for use with the next web request)
+
+3. **ConcurrentSessionFilter**, because it uses the *SecurityContextHolder* functionality but needs to update the *SessionRegistry* to reflect ongoing requests from the principal
+
+4. Authentication processing mechanisms - **UsernamePasswordAuthenticationFilter**, **CasAuthenticationFilter**, **BasicAuthenticationFilter** etc - so that the *SecurityContextHolder* can be modified to contain a valid Authentication request token
+
+5. The **SecurityContextHolderAwareRequestFilter**, if you are using it to install a Spring Security aware *HttpServletRequestWrapper* into your servlet container
+
+6. **RememberMeAuthenticationFilter**, so that if no earlier authentication processing mechanism updated the *SecurityContextHolder*, and the request presents a cookie that enables remember-me services to take place, a suitable remembered Authentication object will be put there
+
+7. **AnonymousAuthenticationFilter**, so that if no earlier authentication processing mechanism updated the *SecurityContextHolder*, an anonymous Authentication object will be put there
+
+8. **ExceptionTranslationFilter**, to catch any Spring Security exceptions so that either an HTTP error response can be returned or an appropriate *AuthenticationEntryPoint* can be launched
+
+9. **FilterSecurityInterceptor**, to protect web URIs and raise exceptions when access is denied
+
+
 
 ### 核心对象
 
-SecurityContextHolder是spring security中最基本的对象,用于存储当前用户的所有安全相关的信息.默认使用ThreadLocal,也可以用`SecurityContextHolder`修改策略.大部分情况下是不需要修改的.这个类最常用的功能就是获取当前用户的信息,以下是官方提供的例子:
+上面介绍了主要filter,下面来说说有哪些核心的对象.  
+**SecurityContextHolder**是spring security中最基本的对象,用于存储当前用户的所有安全相关的信息.默认使用ThreadLocal,也可以用SecurityContextHolder修改策略.大部分情况下是不需要修改的.这个类最常用的功能就是获取当前用户的信息,以下是官方提供的例子:
 
 ```java
 Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -97,14 +119,14 @@ if (principal instanceof UserDetails) {
 }
 ```
 
-org.springframework.security.core.Authentication这个接口类也比较重要,里面存放了用户名,密码,以及用户拥有的权限列表.下面是官方的解释:
+**org.springframework.security.core.Authentication**这个接口类也比较重要,里面存放了用户名,密码,以及用户拥有的权限列表.下面是官方的解释:
 
-- SecurityContextHolder, to provide access to the SecurityContext.
-- SecurityContext, to hold the Authentication and possibly request-specific security information.
-- Authentication, to represent the principal in a Spring Security-specific manner.
-- GrantedAuthority, to reflect the application-wide permissions granted to a principal.
-- UserDetails, to provide the necessary information to build an Authentication object from your application’s DAOs or other source of security data.
-- UserDetailsService, to create a UserDetails when passed in a String-based username (or certificate ID or the like).
+- **SecurityContextHolder**, to provide access to the SecurityContext.
+- **SecurityContext**, to hold the Authentication and possibly request-specific security information.
+- **Authentication**, to represent the principal in a Spring Security-specific manner.
+- **GrantedAuthority**, to reflect the application-wide permissions granted to a principal.
+- **UserDetails**, to provide the necessary information to build an Authentication object from your application’s DAOs or other source of security data.
+- **UserDetailsService**, to create a UserDetails when passed in a String-based username (or certificate ID or the like).
 
 ### 身份验证(Authentication)
 一般web应用的步骤都是:
@@ -176,7 +198,7 @@ class SampleAuthenticationManager implements AuthenticationManager {
 
 还可以直接向context中塞入Authentication
 
->In fact, Spring Security doesn’t mind how you put the Authentication object inside the SecurityContextHolder. The only critical requirement is that the SecurityContextHolder contains an Authentication which represents a principal before the `AbstractSecurityInterceptor` (which we’ll see more about later) needs to authorize a user operation.
+>In fact, Spring Security doesn’t mind how you put the Authentication object inside the SecurityContextHolder. The only critical requirement is that the SecurityContextHolder contains an Authentication which represents a principal before the *AbstractSecurityInterceptor* (which we’ll see more about later) needs to authorize a user operation.
 
 ### 访问控制(Authorization)
 AccessDecisionManager来决定一个用户(Authentication)能否访问特定的资源(web应用中一般是url)
@@ -198,8 +220,8 @@ configuration attributes指的是配置文件中的这些配置
 ```
 
 ### 核心组件
-AuthenticationManager顾名思义就是Authentication的管理器
-在spring security中的默认实现是ProviderManager这个类的作用就是串联起一系列的AuthenticationProvider,每个Provider都会对用户进行身份验证.如果成功就返回Authentication,失败的话就抛出异常
+**AuthenticationManager**顾名思义就是Authentication的管理器
+在spring security中的默认实现是ProviderManager这个类的作用就是串联起一系列的**AuthenticationProvider**,每个Provider都会对用户进行身份验证.如果成功就返回Authentication,失败的话就抛出异常
 AuthenticationProvider的定义:
 
 ```java
@@ -208,7 +230,7 @@ public interface AuthenticationProvider {
     boolean supports(Class<?> authentication);
 ```
 
-UserDetailsService用于根据username获取UserDetails对象.很多默认的Provider都需要注入UserDetailsService,当然如果是自己实现的Provider就可以不需要实现UserDetailsService
+**UserDetailsService**用于根据username获取UserDetails对象.很多默认的Provider都需要注入UserDetailsService,当然如果是自己实现的Provider就可以不需要实现UserDetailsService
 
 ### 使用
 从上面的介绍中可以看出,spring security最重要的两大特性就是身份验证和访问控制.而且可以很灵活的单独使用访问控制.下面我们来介绍几种常见的使用方法.
@@ -467,3 +489,5 @@ spring security的配置
     <b:constructor-arg ref="myVoter"></b:constructor-arg>
 </b:bean>
 ```
+
+结束!
