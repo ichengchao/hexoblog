@@ -6,7 +6,7 @@
 favicon: /favicon.ico
 
 # Set default keywords (Use a comma to separate)
-keywords: "Hexo, NexT"
+keywords: "Hexo,ichengchao"
 
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
@@ -14,7 +14,7 @@ keywords: "Hexo, NexT"
 rss:
 
 # Specify the date when the site was setup
-#since: 2015
+since: 2013 
 
 
 
@@ -27,9 +27,10 @@ rss:
 menu:
   home: /
   #categories: /categories
-  about: /about
   archives: /archives
   tags: /tags
+  photos: /photos
+  about: /about
   #commonweal: /404.html
 
 
@@ -42,9 +43,10 @@ menu_icons:
   enable: true
   #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
   home: home
-  about: user
+  about: user-secret
   categories: th
-  tags: tags
+  tags: tag
+  photos: image
   archives: archive
   commonweal: heartbeat
 
@@ -70,9 +72,9 @@ scheme: Mist
 # - Introduce in 5.0.1
 # ---------------------------------------------------------------
 font:
-  enable: false
+  enable: true
 
-  # Uri of fonts host. E.g. //fonts.googleapis.com (Default)
+  # Uri of fonts host. E.g. //fonts.googleapis.com (Default),change to fonts.useso.com
   host:
 
   # Global font settings used on <body> element.
@@ -117,7 +119,9 @@ font:
 # Social Links
 # Key is the link label showing to end users.
 # Value is the target link (E.g. GitHub: https://github.com/iissnan)
-#social:
+social:
+  github: https://github.com/ichengchao
+  weibo: http://weibo.com/charleshz
   #LinkLabel: Link
 
 
