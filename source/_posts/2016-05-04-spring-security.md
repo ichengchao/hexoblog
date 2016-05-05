@@ -18,7 +18,7 @@ tags:
 * 你是谁? (authentication,身份验证)
 * 你能干什么? (authorization,访问控制)
 
-对应到spring security中两个重要的概念`authentication`和`authorization`
+对应到spring security中两个重要的概念**authentication**和**authorization**
 
 ### Hello World
 在一个使用spring框架的web应用中增加spring security是非常之简单的.  
@@ -37,7 +37,7 @@ tags:
 </dependency>
 ```
 
-第二步:在web.xml中配置filter,需要注意的是这个配置中的`springSecurityFilterChain`这个名称是不能随便填的,后面再解释原因.
+第二步:在web.xml中配置filter,需要注意的是这个配置中的**springSecurityFilterChain**这个名称是不能随便填的,后面再解释原因.
 
 ```xml
 <filter>
@@ -78,10 +78,10 @@ tags:
 
 ### 初窥
 那spring security又是怎么工作的呢?  
-这一切都得从web.xml的filter配置说起.spring security配置的filter是`org.springframework.web.filter.DelegatingFilterProxy`这是什么东东啊?看看这个类的javadoc解释就能明白:
+这一切都得从web.xml的filter配置说起.spring security配置的filter是**org.springframework.web.filter.DelegatingFilterProxy**这是什么东东啊?看看这个类的javadoc解释就能明白:
 >Proxy for a standard Servlet Filter, delegating to a Spring-managed bean that implements the Filter interface. 
 
-这就是一个简单的代理类,代理spring container中实现了servlet filter的类,那如果很多实现了filter类该怎么找到想要的那个呢?通过`<filter-name>`中定义的名称.所以上面的web.xml配置中我提到了这个名称不能随意修改.而真正的spring security使用的filter是`org.springframework.security.filterChainProxy`.这个是proxy负责把所有的filter都串起来.下面是官方说明:
+这就是一个简单的代理类,代理spring container中实现了servlet filter的类,那如果很多实现了filter类该怎么找到想要的那个呢?通过**<filter-name>**中定义的名称.所以上面的web.xml配置中我提到了这个名称不能随意修改.而真正的spring security使用的filter是**org.springframework.security.filterChainProxy**.这个是proxy负责把所有的filter都串起来.下面是官方说明:
 
 
 1. **ChannelProcessingFilter**, because it might need to redirect to a different protocol
@@ -90,7 +90,7 @@ tags:
 
 3. **ConcurrentSessionFilter**, because it uses the *SecurityContextHolder* functionality but needs to update the *SessionRegistry* to reflect ongoing requests from the principal
 
-4. Authentication processing mechanisms - **UsernamePasswordAuthenticationFilter**, **CasAuthenticationFilter**, **BasicAuthenticationFilter** etc - so that the *SecurityContextHolder* can be modified to contain a valid Authentication request token
+4. Authentication processing mechanisms **UsernamePasswordAuthenticationFilter**, **CasAuthenticationFilter**, **BasicAuthenticationFilter** etc - so that the *SecurityContextHolder* can be modified to contain a valid Authentication request token
 
 5. The **SecurityContextHolderAwareRequestFilter**, if you are using it to install a Spring Security aware *HttpServletRequestWrapper* into your servlet container
 
