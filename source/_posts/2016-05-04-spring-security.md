@@ -77,8 +77,7 @@ tags:
 经过这三步配置,最简单的spring security的集成已经完成了.现在可以访问你的应用试试.用户名:admin,密码:passowrd
 
 ### 初窥
-那spring security又是怎么工作的呢?  
-这一切都得从web.xml的filter配置说起.spring security配置的filter是**org.springframework.web.filter.DelegatingFilterProxy**这是什么东东啊?看看这个类的javadoc解释就能明白:
+那spring security又是怎么工作的呢?这一切都得从web.xml的filter配置说起.spring security配置的filter是**org.springframework.web.filter.DelegatingFilterProxy**这是什么东东啊?看看这个类的javadoc解释就能明白:
 >Proxy for a standard Servlet Filter, delegating to a Spring-managed bean that implements the Filter interface. 
 
 这就是一个简单的代理类,代理spring container中实现了servlet filter的类,那如果很多实现了filter类该怎么找到想要的那个呢?通过**<filter-name>**中定义的名称.所以上面的web.xml配置中我提到了这个名称不能随意修改.而真正的spring security使用的filter是**org.springframework.security.filterChainProxy**.这个是proxy负责把所有的filter都串起来.下面是官方说明:
