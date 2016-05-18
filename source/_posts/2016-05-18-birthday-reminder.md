@@ -37,7 +37,7 @@ String  birthday;
 ```
 
 开发一个简单的编辑界面+定时任务,再结合*钉钉*和*微信公众号*的消息收发功能就基本能满足我个人的需求了.但问题来了,如何开放给别人用呢?  
-无意中看到iphone中的*日历应用*中有个*中国节假日*的[订阅](https://p36-calendars.icloud.com/holidays/cn_zh.ics).看一个一下url是一个以ics结尾的东东.于是去看了一下介绍,发现这就是我想要的东东.使用的是iCalendar格式
+无意中看到iphone中的*日历应用*中有个*中国节假日*的[订阅](https://p36-calendars.icloud.com/holidays/cn_zh.ics).看了一下url是一个以ics结尾的东东.于是去了解了一下,发现这个就是我想要的东东.使用的是iCalendar格式
 
 - iCalendar的[wiki介绍](iCalendar)
 - iCalendar的[官网](http://icalendar.org),这里有比较详细的介绍
@@ -69,4 +69,4 @@ END:VCALENDAR
 在iphone中的*设置*中的*邮件,通讯录,日历*点击`添加帐号`就可以了.
 ![](http://chengchao.name/resource-container/image/iphone_add_calendar.jpg)
 
-我开放了这个服务,如果你有需要可以试试.[服务地址](http://www.chengchao.name/springrun/page/birthday/birthday.html)
+我开放了这个服务,如果你也有需要的话可以试试.[服务地址](http://www.chengchao.name/springrun/page/birthday/birthday.html)
