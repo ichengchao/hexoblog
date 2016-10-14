@@ -8,6 +8,7 @@ tags:
  - java
  - maven
  - tech
+ 
 ---
 
 1.出现:  *** 是 Sun 的专用 API，可能会在未来版本中删除 的问题
@@ -16,3 +17,16 @@ tags:
 2.命令行指定settings.xml
 举例`mvn install -Dorg.apache.maven.user-settings="D:\my_settings.xml"`  
 该参数在maven3中不能使用,目前的解决方式是下载一个2.2.1的版本
+
+3.maven的国内镜像,oschina的已经关闭,用阿里云的代替
+
+```xml
+<mirror>
+	<id>aliyun</id>
+	<mirrorOf>central</mirrorOf>
+	<name>aliyun mirror</name>
+	<url>http://maven.aliyun.com/nexus/content/repositories/central/</url>
+</mirror>
+```
+
+
