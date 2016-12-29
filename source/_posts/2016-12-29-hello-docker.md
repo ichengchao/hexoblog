@@ -14,11 +14,11 @@ tags:
 >What is Docker?
 Docker is a tool designed to make it easier to create, deploy, and run applications by using containers. Containers allow a developer to package up an application with all of the parts it needs, such as libraries and other dependencies, and ship it all out as one package. By doing so, thanks to the container, the developer can rest assured that the application will run on any other Linux machine regardless of any customized settings that machine might have that could differ from the machine used for writing and testing the code.
 
-上面是[opensource.com](https://opensource.com/resources/what-docker)对docker的解释.总结一下就是:docker是一个完整的应用运行容器,而且方便使用.
+上面是[opensource.com](https://opensource.com/resources/what-docker)对docker的解释.总结一下:docker是一个完整的应用运行容器,而且用起来很方便.
 
 
 ### 安装
-以mac os为例,直接到[docker官网](https://www.docker.com)下载安装包.对于初学者我不太推荐Kitematic(一个管理docker的可视化工具).就好比学习git,再强大的可视化工具也干不过原生的命令行.所以最好就是真是用docker提供的原生命令.  
+以mac os为例,直接到[docker官网](https://www.docker.com)下载安装包即可.对于初学者我不太推荐Kitematic(一个管理docker的可视化工具).就好比学习git,再强大的可视化工具也干不过原生的命令行.所以最好就是直接使用docker提供的原生命令行工具.  
 安装完成后,最重要的事情就是设置一下镜像,否则速度真是没法忍受.我自己使用的是[阿里云的docker加速器](https://dev.aliyun.com).注册完成后,会有一个属于个人的加速器地址(https://xxx.mirror.aliyuncs.com),把这个地址加入到docker的mirror列表中就行了.
 
 ### 试试看
@@ -38,7 +38,7 @@ docker run --name hello-nginx -d -p 8000:80 nginx
 docker exec -it 02697b7bf225 bash
 ```
 
-进入命令行之后就跟普通的linux没什么区别了.可以看到是debian的8.0版本.
+进入命令行之后就跟普通的linux没什么区别了.可以看到系统是debian的8.0版本.
 
 ```bash
 cat /etc/issue
