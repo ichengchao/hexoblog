@@ -49,7 +49,6 @@ Debian GNU/Linux 8 \n \l
 接着我们在容器里装个vim试试,把apt的源换成阿里云的
 
 ```bash
-
 # 更换成aliyun的源
 echo -e "\
 deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib\n\
@@ -65,7 +64,7 @@ docker cp sources.list [containerID]:/etc/apt/sources.list
 apt-get update
 apt-get install vim
 
-``` 
+```
 
 是不是很爽,一切命令都不用sudo,直接root执行,而且不怕搞出问题,因为随时都可以再run一个起来.
 
