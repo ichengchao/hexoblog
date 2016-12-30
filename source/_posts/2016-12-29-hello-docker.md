@@ -90,5 +90,5 @@ RUN echo "alias ll='ls -lh'" >> /root/.bashrc
 docker build -t "charles/mynginx:v1" ./
 ```
 接着就能用docker images查看到刚刚打出来的镜像了.还能把刚才打出来的镜像直接push到阿里云的私人仓库中.基本的使用差不多就这样了,更多的玩法就你自己去探索吧!  
-ps: 我现在的电脑里是不装mysql,mongo这些东西了,直接用docker代替了,挺好.
+ps: 我现在的电脑里是不装mysql,mongo这些东西了,直接用docker代替了,挺好.还有你看到这个blog也是运行在docker中的,😄
 
