@@ -66,7 +66,8 @@ apt-get update
 apt-get install vim
 
 ``` 
-是不是很爽,一切命令都不用sudo,直接root执行,而且不怕搞出问题,因为随时都可以在run一个起来.
+
+是不是很爽,一切命令都不用sudo,直接root执行,而且不怕搞出问题,因为随时都可以再run一个起来.
 
 ### Dockerfile
 Dockerfile用来描述一个image,写过java的人可以把Dockerfile类比成maven工程的pom.xml文件.我们写个最简单的Dockerfile试试
@@ -84,11 +85,13 @@ RUN apt-get update
 RUN apt-get install -y vim
 RUN echo "alias ll='ls -lh'" >> /root/.bashrc
 ```
+
 写法很简单,基本上跟上面的例子差不多,有点小区别就是在Dockerfile里面的echo不需要加-e了.接着用docker build编译一个image出来
 
 ```
 docker build -t "charles/mynginx:v1" ./
 ```
+
 接着就能用docker images查看到刚刚打出来的镜像了.还能把刚才打出来的镜像直接push到阿里云的私人仓库中.基本的使用差不多就这样了,更多的玩法就你自己去探索吧!  
 ps: 我现在的电脑里是不装mysql,mongo这些东西了,直接用docker代替了,挺好.还有你看到这个blog也是运行在docker中的,😄
 
