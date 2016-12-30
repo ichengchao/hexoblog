@@ -19,7 +19,7 @@ Docker is a tool designed to make it easier to create, deploy, and run applicati
 
 ### 安装
 以mac os为例,直接到[docker官网](https://www.docker.com)下载安装包即可.对于初学者我不太推荐Kitematic(一个管理docker的可视化工具).就好比学习git,再强大的可视化工具也干不过原生的命令行.所以最好就是直接使用docker提供的原生命令行工具.  
-安装完成后,最重要的事情就是设置一下镜像,否则速度真是没法忍受.我自己使用的是[阿里云的docker加速器](https://dev.aliyun.com).注册完成后,会有一个属于个人的加速器地址(https://xxx.mirror.aliyuncs.com),把这个地址加入到docker的mirror列表中就行了.
+安装完成后,最重要的事情就是设置一下镜像,否则速度真是没法忍受.我自己使用的是[阿里云的docker加速器](https://dev.aliyun.com).注册完成后,会有一个属于个人的加速器地址[https://xxx.mirror.aliyuncs.com],把这个地址加入到docker的mirror列表中就行了.
 
 ### 试试看
 我们先装个nginx试试
@@ -58,8 +58,37 @@ deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib\n\
 deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib\
 " >/etc/apt/sources.list
 
+# 当然也可以直接从宿主机cp过来
+docker cp sources.list [containerID]:/etc/apt/sources.list
+
 # 安装vim
 apt-get update
 apt-get install vim
 
 ``` 
+是不是很爽,一切命令都不用sudo,直接root执行,而且不怕搞出问题,因为随时都可以在run一个起来.
+
+### Dockerfile
+Dockerfile用来描述一个image,写过java的人可以把Dockerfile类比成maven工程的pom.xml文件.我们写个最简单的Dockerfile试试
+
+```
+FROM nginx
+MAINTAINER charles
+RUN echo "\
+deb http://mirrors.aliyun.com/debian/ jessie main non-free contrib\n\
+deb http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib\n\
+deb-src http://mirrors.aliyun.com/debian/ jessie main non-free contrib\n\
+deb-src http://mirrors.aliyun.com/debian/ jessie-proposed-updates main non-free contrib\
+" >/etc/apt/sources.list
+RUN apt-get update
+RUN apt-get install -y vim
+RUN echo "alias ll='ls -lh'" >> /root/.bashrc
+```
+写法很简单,基本上跟上面的例子差不多,有点小区别就是在Dockerfile里面的echo不需要加-e了.接着用docker build编译一个image出来
+
+```
+docker build -t "charles/mynginx:v1" ./
+```
+接着就能用docker images查看到刚刚打出来的镜像了.还能把刚才打出来的镜像直接push到阿里云的私人仓库中.基本的使用差不多就这样了,更多的玩法就你自己去探索吧!  
+ps: 我现在的电脑里是不装mysql,mongo这些东西了,直接用docker代替了,挺好.
+
