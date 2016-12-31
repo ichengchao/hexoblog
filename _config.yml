@@ -88,4 +88,4 @@ feed:
   path: atom.xml
   limit: 20
   hub:
-  content:
+  content: true
