@@ -6,6 +6,7 @@
     <i class="fa fa-sun-o fa-spin"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">{{ config.author }}</span>
+  <span><a href="http://blog.chengchao.name/atom.xml"><i class="fa fa-rss"></i></a></span>
 </div>
 
 <div class="powered-by">

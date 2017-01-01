@@ -36,6 +36,10 @@ docker run --name hello-nginx -d -p 8000:80 nginx
 
 # 进入命令行, 02697b7bf225为container id,可以用docker ps查看
 docker exec -it 02697b7bf225 bash
+
+
+# 如果是ubuntu的image
+docker run --name myubuntu -it -d ubuntu
 ```
 
 启动后就能在宿主机的浏览器中直接访问`http://localhost:8000`就能看到nginx的欢迎页了.接着进入容器的命令行之后就跟普通的linux没什么区别了,可以看到系统是debian的8.0版本.
