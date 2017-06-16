@@ -1,13 +1,11 @@
 ---
-title: [转]谈Keepalive
-date: 2017-06-16 22:00:00
-tags:
+title : [转]谈Keepalive
+date : 2017-06-16
+tags :
   - tech
   - tcp
 
 ---
-
-
 
 
 从上图可以看出，用户通过Client访问的是LVS的VIP， VIP后端挂载的RealServer是Nginx服务器。 Client可以是浏览器也可以是一个客户端程序。一般情况下，这种架构不会出现问题，但是如果Client端把请求发送给Nginx，Nginx的后端需要一段时间才能返回结果，超过1分30秒就会有问题，使用LVS作为负载均衡设备看到的现象就是1分30秒之后， Client和Nginx链接被断开，没有数据返回。原因是LVS默认保持TCP的Session为90s，超过90s没有TCP报文在链接上传输，LVS就会给两端发送RESET报文断开链接。LVS这么做的原因相信大家都知道一二，我所知道的原因主要有两点：
