@@ -1,9 +1,9 @@
 ---
-title: [copy]About Keepalive
+title: [转]谈Keepalive
+date: 2017-06-16 22:00:00
 tags:
   - tech
   - tcp
-  - keepalive
 
 ---
 
