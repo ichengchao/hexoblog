@@ -1,6 +1,5 @@
 ---
 title: [转]谈KeepAlive
-date: 2016-12-29 21:44:18
 tags:
   - tech
   - tcp
