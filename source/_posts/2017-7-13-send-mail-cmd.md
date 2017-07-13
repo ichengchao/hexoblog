@@ -1,46 +1,23 @@
 ---
-title: 命令行发送测试邮件
-date: 2017-07-13 21:17:18
+title: OpenJDK源码下载
+date: 2017-07-13 23:00:00
 tags:
   - tech
-  - mail
+  - java
 
 ---
 
-### 动机
-之前帮别的团队写了一个邮件转发的[小工具](http://blog.chengchao.name/2013/10/10/java-email-server/),最近需要加点小功能,发现测试起来不是很方便.
 
-### 方案
-找寻了一番,发现有个非常方便的方法.直接telnet就能搞定.启动邮件服务,端口是25000,括号里面的是注解.
+用Eclipse翻看代码的时候,经常看着看着就看到了rt.jar中的代码.里面有部分代码不是开源的.所以默认看不到源码.不过可以看OpenJDK的代码,两者差别非常小.[下载地址](http://hg.openjdk.java.net/).找到对应的版本,比如JDK8的[链接](http://hg.openjdk.java.net/jdk8/jdk8/jdk/).在左侧下载zip包导入到Eclipse中就能看了.
 
+这是RednaxelaFX对SunJDK和OpenJDK的解释,[链接](https://www.zhihu.com/question/19646618)
 
-无认证模式
+>Sun JDK能用于商业用途的license是SCSL（Sun Community Source License）。JRL（Java Research License）是2004年开始用的，伴随Sun JDK6发布而开始使用，远比JDK7早。
 
-```shell
-telnet localhost 25 
-HELO sending-host
-MAIL FROM: a@a.com
-RCPT TO: b@b.com
-DATA
-(enter one blank line after DATA)
-Subject: test
-To: to-user
-From: from-user
-(enter one blank line after From:)
-test text for email
-. (enter a single period by itself on the last line)
-QUIT
-```
+>从代码完整性来说，
+Sun JDK > SCSL > JRL > OpenJDK
+Sun JDK有少量代码是完全不开发的，即便在SCSL版里也没有。但这种代码非常非常少。
+SCSL代码比JRL多一些closed目录里的内容。
+JRL比OpenJDK多一些受license影响而无法以GPLv2开放的内容。
 
-简易认证模式,服务端也需要改造
-
-```shell
-telnet localhost 25 
-HELO sending-host
-AUTH PLAIN (Base64-encoded ID/password)
-MAIL FROM: a@a.com
-RCPT TO: b@b.com
-```
-
-很简单,很实用,关键是测试起来非常方便,再也不需要装个客户端测试了.
-
+>但从Oracle JDK7 / OpenJDK7开始，闭源和开源版的实质差异实在是非常非常小。与其说OpenJDK7是“不完整的JDK”，还不如说Oracle JDK7在OpenJDK7的基础上带了一些value-add，其中很多还没啥用（例如browser plugin）
