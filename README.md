@@ -1,1 +1,2 @@
 hexo blog
+v1
