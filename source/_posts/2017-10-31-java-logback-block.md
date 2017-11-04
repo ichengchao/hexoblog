@@ -97,6 +97,6 @@ tags:
 >
 Archive removal by RollingFileAppender is now performed asynchronously.
 
-没啥犹豫的,直接把logback的版本升级到最新的1.2.3  Done!!
+没啥犹豫的,直接把logback的版本升级到最新的1.2.3  Done!!!
 
 
