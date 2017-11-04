@@ -38,15 +38,21 @@ git config -l
 #删除配置
 git config --global --unset #key#
 
-#获取远程分支,最好名称是一样的
-git fetch
-git co 分支名称
-
 #直接切换
 git co -b 新建分支名称
 
 #查看所有分支,如果没有看到远程分支,需要git fetch一下
-git b -a
+git b -r
+git b -a //查看全部
+
+#切换到远程分支
+git co -t origin/分支名称
+
+#删除远程分支,tag
+git push origin --delete <branchName>
+git push origin --delete tag <tagname>
+
+
 ```
 
 ### 使用
