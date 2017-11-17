@@ -59,3 +59,4 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 
 
 
+
