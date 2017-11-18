@@ -7,8 +7,9 @@ tags:
   
 ---
 
-> 以下操作都是基于ubuntu 16.04,别的linux发行版可能会有不同
+> 以下linux操作都是基于ubuntu 16.04,别的linux发行版可能会有不同
 
+## Linux 设置
 
 ### 修改主机名
 
@@ -47,6 +48,11 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 
 具体颜色的设置参考[这里](https://gabri.me/blog/custom-colors-in-your-zsh-prompt/)
 
+### autojump
+目录跳转神器,`brew install autojump`,然后在.zshrc中的plugins中增加,比如plugins=(git autojump)
+
+
+
 ### 修改apt源
 推荐用[阿里云的源: http://mirrors.aliyun.com/](http://mirrors.aliyun.com/)
 如果购买的是阿里云ECS,还是把http://mirrors.aliyun.com/换成内网地址http://mirrors.aliyuncs.com/
@@ -58,5 +64,20 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 最好不要密码登录,而是使用密钥
 
 
+## Mac 设置
 
+### 系统设置
+- 下载chrome并登陆，自动同步书签
+- 下载Alfred，神器，不必多说
+- iterm2,又一个神器
+- 下载百度输入法,相比原生的还是略胜一筹,特别是原生的不支持`,.`选词
+- 将fn键设置成默认
+- 将触摸板设置成轻触表示点击,启动三指拖动(在设置的`辅助功能`中)
+- 调节键盘设置中的按键重复(调成最快),延迟调短,删代码的时候会爽很多.
 
+### Dock 设置 
+- 删除一切不必要的图标,把启动交给神器Alfred
+- 按住control点击下载图标,设置成自己想要的方式(我喜欢用文件夹+列表)
+- 在dock设置中点击`将窗口最小化成应用程序图标`减少dock的占用空间
+- 我个人希望把dock放在屏幕的左边,充分利用宽屏
+- 在dock设置中启动缩放效果,这是mac的经典特性,不用浪费.
