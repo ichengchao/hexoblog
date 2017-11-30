@@ -11,8 +11,8 @@ tags:
 ![](http://www.chengchao.name/resource-container/image/git.jpg)
 
 ### 环境准备
-想要学习git,就必须先有个git环境.最有名的当然就是Github.不过访问速度时好时坏,所以建议用一个国内的git仓库.我推荐的是oschina: [http://git.oschina.net/](http://git.oschina.net/) 使用方式跟Github几乎一样,速度快了很多.btw:他家的maven仓库的速度也不错.[http://maven.oschina.net/home.html](http://maven.oschina.net/home.html)
-申请好之后,导入ssh公钥就可以开始测试了.
+想要学习git,就必须先有个git环境.最有名的当然就是Github.不过访问速度时好时坏,所以建议用一个国内的git仓库.我推荐的是oschina: [http://git.oschina.net/](http://git.oschina.net/) 使用方式跟Github几乎一样,速度快了很多.申请好之后,导入ssh公钥就可以开始测试了.btw:~~他家的maven仓库的速度也不错.[http://maven.oschina.net/home.html](http://maven.oschina.net/home.html)~~,(用阿里云的maven仓库代替吧)oschina的已经关闭了.
+
 
 
 ### 配置
