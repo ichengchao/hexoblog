@@ -9,7 +9,7 @@ tags:
 
 ### 背景
 
->如果对linux load不熟悉的话,可以先看一下[这里](https://en.wikipedia.org/wiki/Load_\(computing\))
+>如果对linux load不熟悉的话,可以先看一下<a href="https://en.wikipedia.org/wiki/Load_(computing)">这里</a>
 
 ![](http://www.chengchao.name/resource-container/image/linux_cpu_load.jpg)
 
