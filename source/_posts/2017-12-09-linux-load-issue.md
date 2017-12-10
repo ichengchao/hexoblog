@@ -9,15 +9,15 @@ tags:
 
 ### 背景
 
->如果对linux load不熟悉的话,可以先看一下[这里](https://en.wikipedia.org/wiki/Load_(computing))
+>如果对linux load不熟悉的话,可以先看一下[这里](https://en.wikipedia.org/wiki/Load_\(computing\))
 
 ![](http://www.chengchao.name/resource-container/image/linux_cpu_load.jpg)
 
-最近线上的系统(java应用)出现了一个很诡异的问题,就是cpu非常平稳的情况下load呈现出周期性的波动.如果把JVM停掉,又恢复正常了.花了不少时间排查,排除了是定时任务,IO.也排除了是JVM的问题.最后怀疑是内核的问题,于是准备写个测试程序验证一下.
+最近线上的系统(java应用)出现了一个很诡异的问题,就是cpu非常平稳的情况下load呈现出周期性的波动(如上图).如果把JVM停掉,又恢复正常了.花了不少时间排查,排除了是定时任务,IO.也排除了是JVM笨笨的问题.最后怀疑是内核的问题,于是准备写个测试程序验证一下.
 
 ### 测试程序
 
-问题来了.需要写一个消耗指定cpu百分比的测试代码怎么写?
+问题来了.怎么写一个消耗指定cpu百分比的测试?消耗cpu就是指的就是消耗cpu的时间.所以基本的原理就是按百分比吃掉cpu的时间.比如要消耗30%的cpu,假设单位时间是100ms,那就是跑满30ms,然后sleep 70ms.代码如下:
 
 ```java
 /**
@@ -81,7 +81,7 @@ java CpuUtil_Single 40
 
 ```
 
-如果你的机器是单核的cpu,上面的代码应该没啥问题,还是比较准的.但如果是多核的就有问题了,需要稍加改造适应多核.(代码引起的变化可以用top命令看看,前面那个代码只把其中一个cpu跑起来了,后面这个则是每个核都起来了)
+如果你的机器是单核的cpu,上面的代码没啥问题,还是比较准的.但如果是多核的就有问题了,需要改造一下.代码引起的变化可以用top命令看看,前面那个代码只能把其中一个核跑起来,后面这个则是每个核都跑起来了.
 
 ```java
 import java.util.concurrent.ExecutorService;
@@ -149,7 +149,9 @@ public class CpuUtil_Multi {
 
 ### 重现问题
 
-linux 的load其实是大概每隔5s看一次队列长度.系统的负载是很规律的波动的话,这个计算方式就有问题了.为了重现这个问题,需要对上面的代码再做一点改造.
+![](http://www.chengchao.name/resource-container/image/linux_load_collect.png)
+
+linux 的load其实是大概每隔5s看一次运行队列(在linux中是R+D)长度.系统的负载是很规律的波动的话,这个计算方式就有问题了.为了重现这个问题,需要对上面的代码再做一点改造.
 
 ```java
 package name.chengchao.mylinuxtest.cpu;
@@ -227,4 +229,6 @@ public class CpuUtil_Multi_Interval {
 
 ```
 
-把这个代码跑一个一天看看,会有惊喜!原因就在于系统的load采样周期和cpu波动的周期会慢慢的偏移,重合.偏移,重合.最终导致了这个结果.当然可以把定时任务的周期改成3s试试,还是会有一样的结果只是波动的周期变了而已.
+![](http://www.chengchao.name/resource-container/image/linux_cpu_wave.jpg)
+
+把这个代码跑一个一天,大概就能看到load是上面这个样子!原因就在于系统的load采样周期和cpu波动的周期会慢慢的偏移,重合.偏移,重合.最终导致了这个结果.当然可以把定时任务的周期改成3s试试,还是会有一样的结果只是波动的周期变了而已.
