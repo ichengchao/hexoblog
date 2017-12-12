@@ -1,8 +1,7 @@
 ---
 title: about
 layout: page
-comment: false
-
+comments: false
 ---
 
 coder@hangzhou
