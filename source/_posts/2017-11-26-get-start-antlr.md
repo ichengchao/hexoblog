@@ -24,7 +24,7 @@ tags:
 
 
 ### 练习
-我之前写过一个简单的[四则运算的解析器](http://blog.chengchao.name/2013/04/14/java-binary-tree/),现在我们尝试用ANTLR实现一遍,先来个最简单的版本,先建一个Calculator.g4的文件,内容如下:
+我之前写过一个简单的[四则运算的解析器](http://blog.chengchao.name/2013/04/14/java-binary-tree/),现在我们尝试用ANTLR实现一个最简单的加减运算:
 
 ```
 grammar Calculator;
@@ -32,16 +32,84 @@ grammar Calculator;
 // SKIP
 SPACE:                               [ \t\r\n]+    -> channel(HIDDEN);
 
-expr:   INT (op INT)*
+expr:   atom (op atom)*
     ;
+
+atom:
+        INT
+   ;
 op
-    : AVG|MAX|MIN|SUM|COUNT
+    : ADD|SUB
    ;
 
-MUL :   '*' ;
-DIV :   '/' ;
 ADD :   '+' ;
 SUB :   '-' ;
 INT :   [0-9]+ ;
+```
+
+完成后生成Java代码,然后实现一个CalculatorBaseListener,代码如下:
+
+```java
+package Calculator;
+
+import org.antlr.v4.runtime.CharStream;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
+
+/**
+ * Created by charles on 2017-十二月-1.
+ */
+public class MyHandler extends CalculatorBaseListener {
+
+
+    private Integer result = null;
+    private String op = null;
+
+
+    @Override
+    public void exitAtom(CalculatorParser.AtomContext ctx) {
+        Integer atom = Integer.valueOf(ctx.getText());
+        if (null == result) {
+            result = atom;
+        } else if (op != null) {
+            switch (op) {
+                case "+":
+                    result += atom;
+                    break;
+                case "-":
+                    result -= atom;
+                    break;
+                default:
+                    break;
+
+            }
+        }
+    }
+
+    @Override
+    public void exitOp(CalculatorParser.OpContext ctx) {
+        op = ctx.getText();
+    }
+
+    @Override
+    public void exitExpr(CalculatorParser.ExprContext ctx) {
+        System.out.println("result:" + result);
+    }
+
+    public static void main(String[] args) {
+        String cal = "1+2+3-3-2+5+2+3";
+        CharStream input = CharStreams.fromString(cal);
+        CalculatorLexer lexer = new CalculatorLexer(input);
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        CalculatorParser parser = new CalculatorParser(tokens);
+        MyHandler handler = new MyHandler();
+        ParseTreeWalker.DEFAULT.walk(handler, parser.expr());
+    }
+
+
+}
 
 ```
+
+运行一下试试,虽然例子非常简单,但是还是把最核心的展示出来了.
