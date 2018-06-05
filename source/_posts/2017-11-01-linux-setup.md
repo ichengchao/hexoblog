@@ -36,7 +36,7 @@ useradd admin
 sudo apt-get install zsh
 sudo apt-get install git
 
-修改默认主题,把全路径显示出来,这纯粹是个人习惯
+#robbyrussell是默认主题,把全路径显示出来,这纯粹是个人习惯
 /home/admin/.oh-my-zsh/themes/robbyrussell.zsh-theme
 
 PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_info)'
@@ -54,10 +54,11 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 
 
 ### 修改apt源
-推荐用[阿里云的源: http://mirrors.aliyun.com/](http://mirrors.aliyun.com/)
-如果购买的是阿里云ECS,还是把http://mirrors.aliyun.com/换成内网地址http://mirrors.aliyuncs.com/
-
+推荐用[阿里云的源](http://mirrors.aliyun.com/)
+如果购买的是阿里云ECS,还是把`http://mirrors.aliyun.com/`换成内网地址`http://mirrors.aliyuncs.com/`
 修改完后,用apt-get update更新一下
+
+>测试了一下新买的阿里云的ECS已经默认用的是aliyun自己的源了
 
 ### 修改ssh端口
 配置文件:/etc/ssh/sshd_config
