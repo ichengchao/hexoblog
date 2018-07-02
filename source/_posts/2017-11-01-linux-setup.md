@@ -49,7 +49,8 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 具体颜色的设置参考[这里](https://gabri.me/blog/custom-colors-in-your-zsh-prompt/)
 
 ### autojump
-目录跳转神器,`brew install autojump`,然后在.zshrc中的plugins中增加,比如plugins=(git autojump)
+目录跳转神器,`brew install autojump`,然后在.zshrc中的plugins中增加,比如plugins=(git autojump)  
+>现在有更简单的办法了,oh-my-zsh中已经默认包含了一个`z`的插件,直接开启就行了plugins=(git z),如果不习惯的话,可以把`alias j='z'`
 
 
 
@@ -64,6 +65,15 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 配置文件:/etc/ssh/sshd_config
 最好不要密码登录,而是使用密钥
 
+
+### 安装Docker
+
+参照[官方文档](https://docs.docker.com/install/linux/docker-ce/ubuntu/#set-up-the-repository) ,就是添加一个官方的源,然后直接apt-get install就可以了.就是速度慢了点  
+安装完之后,把当前用户加入到docker用户组中,否则所有命令都需要用`sudo`
+
+```
+sudo usermod -a -G docker $USER
+```
 
 ## Mac 设置
 
