@@ -21,11 +21,9 @@ tags:
 ### 创建新用户
 
 ```bash
-# 用这个,这个用把用户组,设置密码等一步都完成
+# 新增admin用户,平时不使用root帐号
 adduser admin
 
-# 不要用这个
-useradd admin
 ```
 
 ### 安装oh-my-zsh
@@ -62,8 +60,16 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 >测试了一下新买的阿里云的ECS已经默认用的是aliyun自己的源了
 
 ### 修改ssh端口
-配置文件:/etc/ssh/sshd_config
-最好不要密码登录,而是使用密钥
+>最好不要密码登录,而是使用密钥
+
+配置文件路径
+
+```
+/etc/ssh/sshd_config
+# 修改完成后重启ssh服务
+sudo service ssh restart
+
+```
 
 
 ### 安装Docker
