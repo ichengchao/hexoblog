@@ -391,4 +391,4 @@ public class HelloClient {
 
 ```
 
-先运行server,在运行client就能测试一下rpc的基本用法了.
+先运行server,接着运行client就能测试一下rpc的基本用法了.
