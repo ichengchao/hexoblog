@@ -4,7 +4,6 @@ date: 2019-01-14 10:32:19
 tags:
 
  - tech
- - google
  - grpc
  - protobuf
  - java
@@ -391,4 +390,4 @@ public class HelloClient {
 
 ```
 
-先运行server,在运行client就能测试一下rpc的基本用法了.
+先运行server,接着运行client就能测试一下rpc的基本用法了.
