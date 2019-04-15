@@ -59,9 +59,17 @@ sudo service haproxy restart
 ```
 
 
-#### 客户端
+#### 客户端 (ios)
 
-- ios: Potatso Lite (美区)
-- mac: ShadowsocksX-NG (github)
+- Quantumult (推荐)
+- Potatso Lite
+- Potatso 2
+- Outline
+
+
+#### 客户端 (macos)
+
+- ShadowsocksX-NG (github)
+- ShadowdocksX-NG-R8
 
 配置的时候只要把ip和port替换成aliyun的就可以了.
