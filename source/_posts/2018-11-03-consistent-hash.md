@@ -101,76 +101,94 @@ public class ConsistentHashV1 implements ConsistentHash {
 
 ### 版本V2
 
-这个代码中把treeMap替换成了ConcurrentSkipListMap,而且用ceilingKey替换了tailMap的操作.这个版本不是绝对的没有多线程问题,只是在我们的场景中已经够用了.
+这个代码中把treeMap替换成了ConcurrentSkipListMap,而且用ceilingKey替换了tailMap的操作.使用ReentrantReadWriteLock来控制并发
 
 ```java
 package name.chengchao.myConsistentHash;
 
 import java.util.List;
-import java.util.SortedMap;
 import java.util.concurrent.ConcurrentSkipListMap;
+import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-// 调整选取的策略,去除了tailMap的操作,改为使用ceiling
-public class ConsistentHashV2 implements ConsistentHash {
+// 调整选取的策略,去除了tailMap的操作,改为使用ceiling,并增加读写锁
+public class ConsistentHashV4 implements ConsistentHash {
 
-    /**
-     * 将一个node分裂成多少个虚拟node
-     */
-    public final static int VIRTUAL_NODE_NUM = 1024;
+	/**
+	 * 将一个node分裂成多少个虚拟node
+	 */
+	public final static int VIRTUAL_NODE_NUM = 1024;
 
-    /**
-     * 哈希环
-     */
-    private ConcurrentSkipListMap<Long, String> hashCircle = new ConcurrentSkipListMap<Long, String>();
+	/**
+	 * 哈希环
+	 */
+	private ConcurrentSkipListMap<Long, String> hashCircle = new ConcurrentSkipListMap<Long, String>();
 
-    public ConsistentHashV2(List<String> nodeList) {
-        Assert.notEmpty(nodeList, "nodeList can not be empty!");
-        for (String node : nodeList) {
-            addNode(node);
-        }
-    }
+	// 公平策略为true,这样不会导致读多写少的时候,写拿不到锁的问题
+	private ReentrantReadWriteLock lock = new ReentrantReadWriteLock(true);
 
-    /**
-     * 新增node
-     */
-    public void addNode(String node) {
-        Assert.hasText(node, "node can not be blank!");
-        for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
-            String tmpNode = node + "#" + i;
-            hashCircle.put(HashCodeUtils.hashString(tmpNode), node);
-        }
-    }
+	public ConsistentHashV4(List<String> nodeList) {
+		Assert.notEmpty(nodeList, "nodeList can not be empty!");
+		for (String node : nodeList) {
+			addNode(node);
+		}
+	}
 
-    /**
-     * 删除node
-     */
-    public void removeNode(String node) {
-        Assert.hasText(node, "node can not be blank!");
-        for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
-            String tmpNode = node + "#" + i;
-            hashCircle.remove(HashCodeUtils.hashString(tmpNode));
-        }
-    }
+	/**
+	 * 新增node
+	 */
+	public void addNode(String node) {
+		Assert.hasText(node, "node can not be blank!");
+		lock.writeLock().lock();
+		try {
+			for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
+				String tmpNode = node + "#" + i;
+				hashCircle.put(HashCodeUtils.hashString(tmpNode), node);
+			}
+		} finally {
+			lock.writeLock().unlock();
+		}
+	}
 
-    /**
-     * 分发
-     * 
-     * @param target
-     * @return
-     */
-    public String dispatchToNode(String target) {
-        Assert.hasText(target, "target can not be blank!");
-        Long targetHashcode = HashCodeUtils.hashString(target);
-        Long key = hashCircle.ceilingKey(targetHashcode);
-        if (null == key) {
-            key = hashCircle.firstKey();
-        }
-        return hashCircle.get(key);
-    }
+	/**
+	 * 删除node
+	 */
+	public void removeNode(String node) {
+		Assert.hasText(node, "node can not be blank!");
+		lock.writeLock().lock();
+		try {
+			for (int i = 0; i < VIRTUAL_NODE_NUM; i++) {
+				String tmpNode = node + "#" + i;
+				hashCircle.remove(HashCodeUtils.hashString(tmpNode));
+			}
+		} finally {
+			lock.writeLock().unlock();
+		}
+	}
 
-    public int getHashCircleCount() {
-        return hashCircle.size();
-    }
+	/**
+	 * 分发
+	 * 
+	 * @param target
+	 * @return
+	 */
+	public String dispatchToNode(String target) {
+		Assert.hasText(target, "target can not be blank!");
+		lock.readLock().lock();
+		try {
+			Long targetHashcode = HashCodeUtils.hashString(target);
+			Long key = hashCircle.ceilingKey(targetHashcode);
+			if (null == key) {
+				key = hashCircle.firstKey();
+			}
+			return hashCircle.get(key);
+		} finally {
+			lock.readLock().unlock();
+		}
+	}
+
+	public int getHashCircleCount() {
+		return hashCircle.size();
+	}
 
 }
 
