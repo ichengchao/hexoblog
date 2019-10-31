@@ -13,23 +13,23 @@ tags:
 
 ```xml
 <build>
-	<plugins>
-		<plugin>
-			<groupId>org.apache.maven.plugins</groupId>
-			<artifactId>maven-jar-plugin</artifactId>
-			<configuration>
-				<archive>
-					<index>true</index>
-					<manifest>
-						<addClasspath>true</addClasspath>
-					</manifest>
-					<manifestEntries>
-						<version>${myversion}</version>
-					</manifestEntries>
-				</archive>
-			</configuration>
-		</plugin>
-	</plugins>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-jar-plugin</artifactId>
+            <configuration>
+                <archive>
+                    <index>true</index>
+                    <manifest>
+                        <addClasspath>true</addClasspath>
+                    </manifest>
+                    <manifestEntries>
+                        <version>${myversion}</version>
+                    </manifestEntries>
+                </archive>
+            </configuration>
+        </plugin>
+    </plugins>
 </build>
 ```
 
@@ -42,9 +42,9 @@ mvn clean package -Dmyversion=20191111
 
 ```xml
 <dependency>
-	<groupId>com.jcabi</groupId>
-	<artifactId>jcabi-manifests</artifactId>
-	<version>0.7.5</version>
+    <groupId>com.jcabi</groupId>
+    <artifactId>jcabi-manifests</artifactId>
+    <version>0.7.5</version>
 </dependency>
 ```
 这样就能用来check发布到线上的版本是不是刚刚打出来的版本.毕竟发布系统有时候也会有bug的.^_^
