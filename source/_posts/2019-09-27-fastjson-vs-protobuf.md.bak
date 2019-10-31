@@ -1,0 +1,46 @@
+---
+title: Fastjson vs Protobuf
+date: 2019-09-27 10:28:25
+tags:
+
+- java
+- tech
+
+---
+
+### 背景
+最近为双11做性能优化,测试了fastjson和protobuf在我们这个场景中的性能对比.记录一下
+
+### 场景
+我们需要将一个比较大的List\<Agent\>对象做网络传输,涉及到序列化和反序列化. 
+ 
+对象定义(proto3格式):
+
+```
+syntax = "proto3";
+
+option java_package = "name.chengchao.myprotobuf.benchmark";
+
+message AgentList {
+    repeated Agent agent = 1;
+}
+
+message Agent {
+    string ip = 1;
+    string hostname = 2;
+    string app = 3;
+    string appGroup = 4;
+    string env = 5;
+    string idc = 6;
+    string unit = 7;
+    bool online = 8;
+    string parentIp  = 9;
+    string podName = 10;
+    string serviceTag = 11;
+}
+```
+
+
+
+
+
