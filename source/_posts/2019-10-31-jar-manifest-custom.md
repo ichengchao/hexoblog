@@ -47,5 +47,13 @@ mvn clean package -Dmyversion=20191111
     <version>0.7.5</version>
 </dependency>
 ```
+
+如果是war包的话,可以看看[这篇文章](https://dzone.com/articles/get-handle-manifestmf-webapp)
+
+```java
+ServletContext application = getServletConfig().getServletContext();
+InputStream inputStream = application.getResourceAsStream("/META-INF/MANIFEST.MF");
+Manifest manifest = new Manifest(inputStream);
+```
 这样就能用来check发布到线上的版本是不是刚刚打出来的版本.毕竟发布系统有时候也会有bug的.^_^
 
