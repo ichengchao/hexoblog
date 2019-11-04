@@ -54,6 +54,8 @@ mvn clean package -Dmyversion=20191111
 ServletContext application = getServletConfig().getServletContext();
 InputStream inputStream = application.getResourceAsStream("/META-INF/MANIFEST.MF");
 Manifest manifest = new Manifest(inputStream);
+//get version
+manifest.getMainAttributes().getValue("Version");
 ```
 这样就能用来check发布到线上的版本是不是刚刚打出来的版本.毕竟发布系统有时候也会有bug的.^_^
 
