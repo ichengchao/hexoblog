@@ -18,79 +18,19 @@ tags:
 
 举个例子,看看tar这个命令的对比
 
-这个是`man tar`的部分内容
+这个是`man tar`的截图
 
-```bash
-TAR(1)                    BSD General Commands Manual                   TAR(1)
+<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/image/alfred_tldr_man_tar.png" style="zoom:30%;" />
 
-NAME
-     tar -- manipulate tape archives
+再来看看tldr的版本,显然要比man简单明了的多,这么好的功能当然要和Alfred这个神器结合一下.
 
-SYNOPSIS
-     tar [bundled-flags <args>] [<file> | <pattern> ...]
-     tar {-c} [options] [files | directories]
-     tar {-r | -u} -f archive-file [options] [files | directories]
-     tar {-t | -x} [options] [patterns]
+<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/image/alfred_tldr_tar.png" style="zoom:40%;" />
 
-DESCRIPTION
-     tar creates and manipulates streaming archive files.  This implementation can extract from tar, pax, cpio, zip, jar, ar, xar, rpm, 7-zip,
-     and ISO 9660 cdrom images and can create tar, pax, cpio, ar, zip, 7-zip, and shar archives.
 
-     The first synopsis form shows a ``bundled'' option word.  This usage is provided for compatibility with historical implementations.  See
-     COMPATIBILITY below for details.
-
-     The other synopsis forms show the preferred usage.  The first option to tar is a mode indicator from the following list:
-     -c      Create a new archive containing the specified items.  The long option form is --create.
-     -r      Like -c, but new entries are appended to the archive.  Note that this only works on uncompressed archives stored in regular files.
-             The -f option is required.  The long option form is --append.
-     -t      List archive contents to stdout.  The long option form is --list.
-     -u      Like -r, but new entries are added only if they have a modification date newer than the corresponding entry in the archive.  Note
-             that this only works on uncompressed archives stored in regular files.  The -f option is required.  The long form is --update.
-```
-
-再来看看tldr的版本
-
-```markdown
-# tar
-
-> Archiving utility.
-> Often combined with a compression method, such as gzip or bzip.
-> More information: <https://www.gnu.org/software/tar>.
-
-- Create an archive from files:
-
-`tar cf {{target.tar}} {{file1}} {{file2}} {{file3}}`
-
-- Create a gzipped archive:
-
-`tar czf {{target.tar.gz}} {{file1}} {{file2}} {{file3}}`
-
-- Extract a (compressed) archive into the current directory:
-
-`tar xf {{source.tar[.gz|.bz2|.xz]}}`
-
-- Extract an archive into a target directory:
-
-`tar xf {{source.tar}} -C {{directory}}`
-
-- Create a compressed archive, using archive suffix to determine the compression program:
-
-`tar caf {{target.tar.xz}} {{file1}} {{file2}} {{file3}}`
-
-- List the contents of a tar file:
-
-`tar tvf {{source.tar}}`
-
-- Extract files matching a pattern:
-
-`tar xf {{source.tar}} --wildcards {{"*.html"}}
-```
-
-显然tldr的版本要简单明了的多,这么好的功能当然要和Alfred这个神器结合一下.
 
 ### Alfred Workflow
 
-基本的思路就是把tldr的git仓库clone到本地,然后写个接口来嫁接Alfred的数据格式要求.直接上代码:
+基本的思路就是把tldr的git仓库clone到本地,然后写个接口来嫁接Alfred的数据格式.直接上代码:
 
 ```java
 package name.chengchao.springrun.service.alfredplugin;
