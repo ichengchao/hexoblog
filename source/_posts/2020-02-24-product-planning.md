@@ -9,4 +9,4 @@ tags:
 
 >前段时间参加了公司组织的产品规划的培训.还是收获了一些,整理如下
 
-![](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/image/product-planning.png)
+![](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/image/product-planning.png?x-oss-process=image/resize,p_50)
