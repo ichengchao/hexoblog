@@ -24,6 +24,7 @@ tags:
 - 1Password: 密码管理器,离不开了
 - Surge: 贵有贵的道理,翻墙神器,配置简单
 - OmniGraffle: 画图全靠它,好用
+- Free Ruler: 屏幕尺,简单好用,免费
 
 ##### 开发
 
