@@ -28,11 +28,17 @@ Quantumult自带网络分享
 
 ### Mac分享
 
+最简单的方式还是用Surge之类的自带
+
+<img src="http://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/image/mac_surge_share.png" style="zoom:50%;" />
+
+当然也可以使用单独的代理网关,比如Squid或者Tinyproxy
+
 在介绍之前先插一下[Homebrew](https://brew.sh/)
 
 > **The Missing Package Manager for macOS** 
 
-安装完成后,在/usr/local/就能看到了etc和var就是对应到linux的etc和var,基本使用方法可以网上查一下,如果速度太慢也可以更换一下默认的git remote.然后就可以安装Squid或者Tinyproxy这种代理工具,拿Tinyproxy举个例子
+安装完成后,在/usr/local/就能看到了etc和var就是对应到linux的etc和var,基本使用方法可以网上查一下,如果速度太慢也可以更换一下默认的git remote.然后就可以安装Tinyproxy
 
 ##### Tinyproxy
 
