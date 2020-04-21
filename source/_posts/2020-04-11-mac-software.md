@@ -12,7 +12,14 @@ tags:
 ##### 工具
 
 - Alfred: 神器,为mac系统增光不少
+  - Layout: 调整窗口大小
+  - Encode/Decode: 常见的编码解码小工具
+  - Colors: 颜色显示器
+  - Youdao: 英文翻译
+  - TLDR: 我自己开发的小工具,代替系统的man
+  - CharlesToolbox: 个人的小工具集合
 - iTerm2: 替代原生的terminal
+  - oh-my-zsh: 更好用的shell,暂且归类为Terminal
 - Typora: Markdown编辑器,替代原来的Macdown
 - IINA: 万能视频播放器
 - The Unarchiver: 解压软件
@@ -25,11 +32,18 @@ tags:
 - Surge: 贵有贵的道理,翻墙神器,配置简单
 - OmniGraffle: 画图全靠它,好用
 - Free Ruler: 屏幕尺,简单好用,免费
+- Homebrew: Package Manager for macOS
 
 ##### 开发
 
 - Eclipse: 免费,够用
+- IntelliJ IDEA: 用的不多,确实好用,就是太占资源
 - Visual Studio Code: 微软的良心之作
+  - Java Extension Pack: java开发全家桶
+  - Eclipse keymap: 将快捷键映射成eclipse的习惯,对应的也有IDEA keymap
+  - Project Manager: 项目路径管理器
+  - XML Tools: xml的工具,支持xml格式化
+  - Docker: 相当于系统Docker的GUI
 - Postman: Http调试工具
 - Robo 3T: MongoDB的客户端
 - Sequel Pro: Mysql的客户端
