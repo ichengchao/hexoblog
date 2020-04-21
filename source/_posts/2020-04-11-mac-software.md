@@ -44,6 +44,7 @@ tags:
   - Project Manager: 项目路径管理器
   - XML Tools: xml的工具,支持xml格式化
   - Docker: 相当于系统Docker的GUI
+  - Kubernetes: 相当于Kubectl的GUI
 - Postman: Http调试工具
 - Robo 3T: MongoDB的客户端
 - Sequel Pro: Mysql的客户端
