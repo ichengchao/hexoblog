@@ -42,6 +42,7 @@ Quantumult自带网络分享
 
 > The Missing Package Manager for macOS
 
+
 安装完成后,在/usr/local/就能看到了,etc和var就是对应到linux的etc和var,基本使用方法可以网上查一下,如果速度太慢也可以更换一下默认的git remote.然后就可以安装Tinyproxy
 
 #### Tinyproxy
