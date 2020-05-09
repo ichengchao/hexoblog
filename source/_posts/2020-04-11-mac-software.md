@@ -33,6 +33,11 @@ tags:
 - OmniGraffle: 画图全靠它,好用
 - Free Ruler: 屏幕尺,简单好用,免费
 - Homebrew: Package Manager for macOS
+  - gotty: 一个将终端映射成web的小工具
+  - telnet & wget
+  - cloc: 代码统计小工具
+  - tinyproxy: 简单易用的代理
+  - htop: 比top更加直观
 
 ##### 开发
 
@@ -40,11 +45,14 @@ tags:
 - IntelliJ IDEA: 用的不多,确实好用,就是太占资源
 - Visual Studio Code: 微软的良心之作
   - Java Extension Pack: java开发全家桶
+  - Tomcat for Java: tomcat 插件
   - Eclipse keymap: 将快捷键映射成eclipse的习惯,对应的也有IDEA keymap
   - Project Manager: 项目路径管理器
   - XML Tools: xml的工具,支持xml格式化
+  - YAML: yaml格式支持
   - Docker: 相当于系统Docker的GUI
   - Kubernetes: 相当于Kubectl的GUI
+  - Monokai Pro: 一个还不错的icon和theme
 - Postman: Http调试工具
 - Robo 3T: MongoDB的客户端
 - Sequel Pro: Mysql的客户端
