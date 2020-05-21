@@ -71,7 +71,23 @@ END:VEVENT
 END:VCALENDAR
 ```
 
-在iphone中的*设置*中的*邮件,通讯录,日历*点击`添加帐号`就可以了.
+
+
+### 客户端订阅
+
+##### iphone
+
+设置  -> 密码与账户 -> 添加帐号
+
 ![](http://chengchao.name/resource-container/image/iphone_add_calendar.jpg)
 
+
+
+##### Mac
+
+Calendar -> File -> New Calendar Subscription
+
+![](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/image/birthday-reminder_mac_subscription.png)
+
 我开放了这个服务,如果你也有需要的话可以试试.[服务地址](http://www.chengchao.name/springrun/page/birthday/birthday.html)
+
