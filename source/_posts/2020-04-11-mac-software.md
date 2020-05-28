@@ -21,6 +21,7 @@ tags:
 - iTerm2: 替代原生的terminal
   - oh-my-zsh: 更好用的shell,暂且归类为Terminal
 - Typora: Markdown编辑器,替代原来的Macdown
+  - 配合upic+aliyun oss能实现图片自动上传的功能
 - IINA: 万能视频播放器
 - The Unarchiver: 解压软件
 - XMind: 不想花钱,将就着用吧
@@ -38,6 +39,7 @@ tags:
   - cloc: 代码统计小工具
   - tinyproxy: 简单易用的代理
   - htop: 比top更加直观
+- Glance: 快速预览的增强,支持markdown等格式,在app store可以免费下载
 
 ##### 开发
 
