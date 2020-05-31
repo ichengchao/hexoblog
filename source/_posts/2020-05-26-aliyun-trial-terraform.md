@@ -24,9 +24,104 @@ tags:
 
 <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/image/aliyun-trial-terraform-2.png" alt="image-20200526174425413" style="zoom:50%;" />
 
-### 场景
+### 准备
 
-设定要使用Terraform来初始化下面这个简单架构图
+先看一下Terraform的三种AK认证方式
+
+##### 1. 明文写在配置文件(不推荐)
+
+```json
+provider "alicloud" {
+  access_key = "your_access_key"
+  secret_key = "your_access_secret"
+  region     = "cn-hangzhou"
+}
+```
+
+#####2.用环境变量暴露
+
+```json
+provider "alicloud" {
+}
+```
+
+然后export对应的环境变量
+
+- ALICLOUD_ACCESS_KEY
+- ALICLOUD_SECRET_KEY
+- ALICLOUD_REGION
+
+##### 3.使用Aliyun CLI配置文件中的Profile
+
+```json
+provider "alicloud" {
+  profile = "default"
+}
+```
+
+CLI的使用方式看[这里](https://github.com/aliyun/aliyun-cli),初始化完成后,直接使用配置文件中的Profile就行,默认的配置文件在`~/.aliyun/config.json`,配置文件中默认的Profile是`default`
+
+#####基本概念
+
+配置文件的语法可以看[官方文档](https://www.terraform.io/docs/configuration/index.html),我这里只简单介绍一下本文会用到的
+
+- data: 数据源,可以被resource引用,比如region列表,可用的image列表都是数据源,能提高`可复用性`
+- resource: 配置文件中最重要的概念,一台机器,一个IP,一个域名,一个绑定关系都是resource
+- output: 可以用于信息的打印,可以作为一种调试手段
+
+#####小试牛刀
+
+通过上面的介绍,对基本的概念有了一个大概的了解,下面写个最简单的配置测试一下.(推荐使用vscode+[terraform插件](https://marketplace.visualstudio.com/items?itemName=mauve.terraform))
+
+> 提示: 把配置文件直接拷贝到vscode中,可能会报错,不用管.那是因为目前插件还不支持最新语法,这个插件已经被[Terraform官方接管](https://www.hashicorp.com/blog/supporting-the-hashicorp-terraform-extension-for-visual-studio-code/),相信很快就会推出新的版本
+
+```json
+# 这里使用的AK和region都是从profile里面来的
+provider "alicloud" {
+  profile = "default"
+}
+
+# 列出阿里云所有的region
+data "alicloud_regions" "region_list" {
+}
+
+# 定义一个输出,方便调试
+output "regions" {
+  value = data.alicloud_regions.region_list
+}
+```
+
+```bash
+terraform init  # init:第一次或者新增module的时候需要执行
+terraform plan  # 试运行,会有语法检查
+terraform apply # 真实运行,试运行通过也不代表这一步没有问题,有些问题试运行是检查不出来的
+# 执行结果,也可以用terraform show看
+Apply complete! Resources: 0 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+regions = {
+  "id" = "2613364496"
+  "ids" = [
+    "cn-qingdao",
+    "cn-beijing",
+    "cn-zhangjiakou",
+    "cn-huhehaote",
+    "cn-hangzhou",
+    ......
+```
+
+###进入主题
+
+##### 选题
+
+上面已经完成最简单的`hello world` ,接下来我们开始动手配置一个比较真实的场景,直接看图
+
+> 默认你已经对阿里云的产品有一定的了解
+
+<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/upic/2020_05_28_image-20200528214208661.png" alt="image-20200528214208661" style="zoom:50%;" />
+
+从这个图中可以看出,这是一个最简单的web应用,后端使用mysql.前面用slb做负载均衡.涉及到的云产品有:
 
 - SLB
 - VPC
@@ -36,52 +131,7 @@ tags:
 - ECS (2)
 - RDS
 
-<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/upic/2020_05_28_image-20200528214208661.png" alt="image-20200528214208661" style="zoom:50%;" />
-
-### 环境准备
-
-先看一下Terraform的认证方式,有三种:
-
-- 直接明文写在配置文件中
-- 使用环境变量
-- 使用CLI中的profile (推荐)
-  - 使用方式看[这里](https://github.com/aliyun/aliyun-cli)
-  - 在`~/.aliyun/config.json`中生成profile,默认名称是`default`
-
-先写一个最简单的配置文件来测试一下,推荐使用vscode+terraform插件
-
-```json
-# 这里使用的AK和region都是从profile里面来的
-provider "alicloud" {
-  profile = "default"
-}
-
-data "alicloud_regions" "current_region_ds" {
-  current = true
-}
-
-# 定义一个输出,方便调试
-output "current_region" {
-  value = data.alicloud_regions.current_region_ds.regions.0
-}
-```
-
-```bash
-terraform init  # init:第一次或者新增module的时候需要执行
-terraform plan  # 试运行,会有语法检查
-terraform apply # 真实运行,试运行通过也不代表这一步没有问题,有些问题试运行是检查不出来的
-# 执行结果,也可以用terraform show看
-Outputs:
-current_region = {
-  "id" = "cn-hangzhou"
-  "local_name" = "华东 1"
-  "region_id" = "cn-hangzhou"
-}
-```
-
-###前置资源
-
-在创建ECS之前,需要先把VPC,VSW,安全组创建好
+在开始创建ECS之前,需要先把VPC,VSW,安全组创建好
 
 ```json
 # 创建VPC
@@ -107,7 +157,7 @@ resource "alicloud_security_group" "charles_security_group" {
 
 还是一样,执行`terraform apply`就能创建好,之后可以用`terraform state list`查看创建好的资源
 
-###创建ECS
+#####创建ECS
 
 ```json
 # 创建ECS-> web1 649849
@@ -139,7 +189,7 @@ resource "alicloud_instance" "charles-web2" {
 }
 ```
 
-### 配置负载均衡
+#####配置负载均衡
 
 这里的步骤稍微多一点
 
@@ -211,7 +261,7 @@ nohup go run hello.go &
 curl "http://[eip address]"
 ```
 
-### 配置数据库
+##### 配置数据库
 
 步骤:
 
@@ -260,9 +310,9 @@ COMMENT='access log';
 
 到这里,最上面架构图里面的东西都已经部署完毕,并且配置好.接下来写一个简单的测试代码.
 
-### 业务代码
+##### 业务代码
 
-这个web服务非常简单,就是每次用户访问都写一条log到mysql.还是用go来写,代码里用到了mysql的driver,部署的时候需要在机器上先下载依赖`go get -u github.com/go-sql-driver/mysql`.
+这个web服务非常简单,就是每次用户访问都写一条log到mysql.还是用go来写,代码里用到了mysql的driver,部署的时候需要在机器上先下载依赖`go get -u github.com/go-sql-driver/mysql`.[完整代码在这里](https://gitee.com/ichengchao/codes/rmfunsx8yj1o3vb5p6kge56)
 
 ```go
 //hello.go
@@ -353,7 +403,7 @@ id: 583, log: 2020-05-28 18:13:16 @ charlesweb1
 
 ### 总结
 
-近年来,不管是上层的应用(k8s),到系统(docker),再到基础设施(terraform)都面向配置文件的.这个最大的好处就是继承了代码管理中的所有好处.
+近年来,不管是上层的应用(k8s),到系统(docker),再到基础设施(terraform)都是声明式的.这个最大的好处就是继承了代码管理中的一些成熟经验,比如:
 
 - 版本管理
 - 能分享,能重用
@@ -361,4 +411,5 @@ id: 583, log: 2020-05-28 18:13:16 @ charlesweb1
 
 一旦习惯了这个就再也回不去了,真香!
 
-Terraform在国内的普及率还非常低,希望没有尝试过的同学都可以试用一下.文章中涉及的完整配置文件在[这里](https://gist.github.com/ichengchao/27e8d73e00d9f7d1f94e67a513884337)
+Terraform在国内的普及率还非常低,希望没有尝试过的同学都可以试用一下.文章中涉及的[完整配置文件在这里](https://gitee.com/ichengchao/codes/4fsbkpt3cy609ljqh2rmg72)
+
