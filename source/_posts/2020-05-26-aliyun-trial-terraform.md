@@ -30,7 +30,7 @@ tags:
 
 ##### 1. 明文写在配置文件(不推荐)
 
-```json
+```js
 provider "alicloud" {
   access_key = "your_access_key"
   secret_key = "your_access_secret"
@@ -38,9 +38,11 @@ provider "alicloud" {
 }
 ```
 
-#####2.用环境变量暴露
 
-```json
+
+##### 2.用环境变量暴露
+
+```js
 provider "alicloud" {
 }
 ```
@@ -53,7 +55,7 @@ provider "alicloud" {
 
 ##### 3.使用Aliyun CLI配置文件中的Profile
 
-```json
+```js
 provider "alicloud" {
   profile = "default"
 }
@@ -61,7 +63,7 @@ provider "alicloud" {
 
 CLI的使用方式看[这里](https://github.com/aliyun/aliyun-cli),初始化完成后,直接使用配置文件中的Profile就行,默认的配置文件在`~/.aliyun/config.json`,配置文件中默认的Profile是`default`
 
-#####基本概念
+##### 基本概念
 
 配置文件的语法可以看[官方文档](https://www.terraform.io/docs/configuration/index.html),我这里只简单介绍一下本文会用到的
 
@@ -69,13 +71,13 @@ CLI的使用方式看[这里](https://github.com/aliyun/aliyun-cli),初始化完
 - resource: 配置文件中最重要的概念,一台机器,一个IP,一个域名,一个绑定关系都是resource
 - output: 可以用于信息的打印,可以作为一种调试手段
 
-#####小试牛刀
+##### 小试牛刀
 
 通过上面的介绍,对基本的概念有了一个大概的了解,下面写个最简单的配置测试一下.(推荐使用vscode+[terraform插件](https://marketplace.visualstudio.com/items?itemName=mauve.terraform))
 
 > 提示: 把配置文件直接拷贝到vscode中,可能会报错,不用管.那是因为目前插件还不支持最新语法,这个插件已经被[Terraform官方接管](https://www.hashicorp.com/blog/supporting-the-hashicorp-terraform-extension-for-visual-studio-code/),相信很快就会推出新的版本
 
-```json
+```js
 # 这里使用的AK和region都是从profile里面来的
 provider "alicloud" {
   profile = "default"
@@ -111,7 +113,7 @@ regions = {
     ......
 ```
 
-###进入主题
+### 进入主题
 
 ##### 选题
 
@@ -133,7 +135,7 @@ regions = {
 
 在开始创建ECS之前,需要先把VPC,VSW,安全组创建好
 
-```json
+```js
 # 创建VPC
 resource "alicloud_vpc" "charles_vpc" {
   name       = "charles_vpc"
@@ -157,9 +159,9 @@ resource "alicloud_security_group" "charles_security_group" {
 
 还是一样,执行`terraform apply`就能创建好,之后可以用`terraform state list`查看创建好的资源
 
-#####创建ECS
+##### 创建ECS
 
-```json
+```js
 # 创建ECS-> web1 649849
 resource "alicloud_instance" "charles-web1" {
   image_id             = data.alicloud_images.ubuntu.ids.0
@@ -189,7 +191,7 @@ resource "alicloud_instance" "charles-web2" {
 }
 ```
 
-#####配置负载均衡
+##### 配置负载均衡
 
 这里的步骤稍微多一点
 
@@ -198,7 +200,7 @@ resource "alicloud_instance" "charles-web2" {
 - 启动SLB的HTTP的监听,对外80,对后8080
 - 将上面的两台ECS加入负载均衡
 
-```json
+```js
 # 创建SLB
 resource "alicloud_slb" "charles_slb" {
   name                 = "charles_slb"
@@ -269,7 +271,7 @@ curl "http://[eip address]"
 - 创建一个高权限用户
 - 创建一个database实例
 
-```json
+```js
 # RDS
 resource "alicloud_db_instance" "charles_db_instance" {
   engine           = "MySQL"
@@ -297,7 +299,7 @@ resource "alicloud_db_database" "charles_rds_db_test" {
 }
 ```
 
-```mysql
+```sql
 # 建好测试用的表
 CREATE TABLE `accesslog` (
 	`id` int NOT NULL AUTO_INCREMENT,
