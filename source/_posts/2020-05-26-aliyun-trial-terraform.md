@@ -28,7 +28,7 @@ tags:
 
 先看一下Terraform的三种AK认证方式
 
-##### 1. 明文写在配置文件(不推荐)
+##### 1.明文写在配置文件(不推荐)
 
 ```js
 provider "alicloud" {
