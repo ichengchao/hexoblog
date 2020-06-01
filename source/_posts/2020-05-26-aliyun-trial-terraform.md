@@ -28,7 +28,7 @@ tags:
 
 先看一下Terraform的三种AK认证方式
 
-##### 1.明文写在配置文件(不推荐)
+#### 1.明文写在配置文件(不推荐)
 
 ```js
 provider "alicloud" {
@@ -40,7 +40,7 @@ provider "alicloud" {
 
 
 
-##### 2.用环境变量暴露
+#### 2.用环境变量暴露
 
 ```js
 provider "alicloud" {
@@ -53,7 +53,7 @@ provider "alicloud" {
 - ALICLOUD_SECRET_KEY
 - ALICLOUD_REGION
 
-##### 3.使用Aliyun CLI配置文件中的Profile
+#### 3.使用Aliyun CLI配置文件中的Profile
 
 ```js
 provider "alicloud" {
@@ -63,7 +63,7 @@ provider "alicloud" {
 
 CLI的使用方式看[这里](https://github.com/aliyun/aliyun-cli),初始化完成后,直接使用配置文件中的Profile就行,默认的配置文件在`~/.aliyun/config.json`,配置文件中默认的Profile是`default`
 
-##### 基本概念
+#### 基本概念
 
 配置文件的语法可以看[官方文档](https://www.terraform.io/docs/configuration/index.html),我这里只简单介绍一下本文会用到的
 
@@ -71,7 +71,7 @@ CLI的使用方式看[这里](https://github.com/aliyun/aliyun-cli),初始化完
 - resource: 配置文件中最重要的概念,一台机器,一个IP,一个域名,一个绑定关系都是resource
 - output: 可以用于信息的打印,可以作为一种调试手段
 
-##### 小试牛刀
+#### 小试牛刀
 
 通过上面的介绍,对基本的概念有了一个大概的了解,下面写个最简单的配置测试一下.(推荐使用vscode+[terraform插件](https://marketplace.visualstudio.com/items?itemName=mauve.terraform))
 
@@ -115,7 +115,7 @@ regions = {
 
 ### 进入主题
 
-##### 选题
+#### 选题
 
 上面已经完成最简单的`hello world` ,接下来我们开始动手配置一个比较真实的场景,直接看图
 
@@ -159,7 +159,7 @@ resource "alicloud_security_group" "charles_security_group" {
 
 还是一样,执行`terraform apply`就能创建好,之后可以用`terraform state list`查看创建好的资源
 
-##### 创建ECS
+#### 创建ECS
 
 ```js
 # 创建ECS-> web1 649849
@@ -191,7 +191,7 @@ resource "alicloud_instance" "charles-web2" {
 }
 ```
 
-##### 配置负载均衡
+#### 配置负载均衡
 
 这里的步骤稍微多一点
 
@@ -263,7 +263,7 @@ nohup go run hello.go &
 curl "http://[eip address]"
 ```
 
-##### 配置数据库
+#### 配置数据库
 
 步骤:
 
@@ -312,7 +312,7 @@ COMMENT='access log';
 
 到这里,最上面架构图里面的东西都已经部署完毕,并且配置好.接下来写一个简单的测试代码.
 
-##### 业务代码
+#### 业务代码
 
 这个web服务非常简单,就是每次用户访问都写一条log到mysql.还是用go来写,代码里用到了mysql的driver,部署的时候需要在机器上先下载依赖`go get -u github.com/go-sql-driver/mysql`.[完整代码在这里](https://gitee.com/ichengchao/codes/rmfunsx8yj1o3vb5p6kge56)
 
