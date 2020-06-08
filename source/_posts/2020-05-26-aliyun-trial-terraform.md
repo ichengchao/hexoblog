@@ -314,7 +314,7 @@ COMMENT='access log';
 
 #### 业务代码
 
-这个web服务非常简单,就是每次用户访问都写一条log到mysql.还是用go来写,代码里用到了mysql的driver,部署的时候需要在机器上先下载依赖`go get -u github.com/go-sql-driver/mysql`.[完整代码在这里](https://gitee.com/ichengchao/codes/rmfunsx8yj1o3vb5p6kge56)
+这个web服务非常简单,就是每次用户访问都写一条log到mysql.还是用go来写,代码里用到了mysql的driver,部署的时候需要在机器上先下载依赖`go get -u github.com/go-sql-driver/mysql`.[完整代码在这里](https://gist.github.com/ichengchao/27e8d73e00d9f7d1f94e67a513884337)
 
 ```go
 //hello.go
@@ -413,5 +413,5 @@ id: 583, log: 2020-05-28 18:13:16 @ charlesweb1
 
 一旦习惯了这个就再也回不去了,真香!
 
-Terraform在国内的普及率还非常低,希望没有尝试过的同学都可以试用一下.文章中涉及的[完整配置文件在这里](https://gitee.com/ichengchao/codes/4fsbkpt3cy609ljqh2rmg72)
+Terraform在国内的普及率还非常低,希望没有尝试过的同学都可以试用一下.文章中涉及的[完整配置文件在这里](https://gist.github.com/ichengchao/27e8d73e00d9f7d1f94e67a513884337)
 
