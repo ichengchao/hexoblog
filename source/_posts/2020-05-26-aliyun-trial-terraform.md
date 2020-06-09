@@ -10,7 +10,7 @@ tags:
 
 
 
-![terraform-1](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_06_09_14_35_1591684548133.png)
+<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_06_09_14_41_1591684917659.png" alt="aliyun-trial-terraform-1" style="zoom:50%;" />
 
 ### Terraform是什么
 
@@ -22,7 +22,7 @@ tags:
 
 > 跟其他配置软件工具的区别
 
-![aliyun-trial-terraform-2](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_06_09_14_35_1591684537659.png)
+<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_06_09_14_42_1591684935103.png" alt="aliyun-trial-terraform-2" style="zoom:50%;" />
 
 ### 准备
 
@@ -121,7 +121,7 @@ regions = {
 
 > 默认你已经对阿里云的产品有一定的了解
 
-![image-20200528214208661](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_06_09_14_36_1591684561991.png)
+<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_06_09_14_43_1591684996406.png" alt="image-20200609144316209" style="zoom:50%;" />
 
 从这个图中可以看出,这是一个最简单的web应用,后端使用mysql.前面用slb做负载均衡.涉及到的云产品有:
 
