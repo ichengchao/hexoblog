@@ -1,5 +1,6 @@
-public/
-package.json
-node_modules/
-db.json
 .DS_Store
+.vscode/
+node_modules/
+public/
+db.json
+package-lock.json

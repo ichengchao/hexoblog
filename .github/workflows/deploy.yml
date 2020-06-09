@@ -1,0 +1,52 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Deploy Blog
+
+# Controls when the action will run. Triggers the workflow on push or pull request
+# events but only for the master branch
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v1
+        with:
+          node-version: "12"
+
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+
+      - name: Install dependencies
+        run: |
+          npm i -g hexo-cli
+          npm i
+          hexo
+      - name: Run a multi-line script
+        run: |
+          hexo generate
+          ls -l public
+      - name: config ossutil
+        uses: manyuanrong/setup-ossutil@v1.0
+        with:
+          endpoint: ${{ secrets.ALIYUN_OSS_ENDPOINT }}
+          access-key-id: ${{ secrets.ALIYUN_OSS_KEY_ID }}
+          access-key-secret: ${{ secrets.ALIYUN_OSS_KEY_SECRET }}
+
+      - name: upload to oss
+        run: |
+          ossutil rm oss://chengchaoblog/ -a -r -f
+          ossutil cp public oss://chengchaoblog -r -f
