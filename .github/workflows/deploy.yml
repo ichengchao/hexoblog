@@ -46,7 +46,7 @@ jobs:
           access-key-id: ${{ secrets.ALIYUN_OSS_KEY_ID }}
           access-key-secret: ${{ secrets.ALIYUN_OSS_KEY_SECRET }}
 
-      # ossutil rm oss://chengchaoblog/ -a -r -f
       - name: upload to oss
         run: |
+          ossutil rm oss://chengchaoblog/ -a -r -f
           ossutil cp public oss://chengchaoblog -r -f

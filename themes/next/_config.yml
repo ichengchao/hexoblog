@@ -130,7 +130,7 @@ menu:
   home: / || home
   about: /about/ || user
   tags: /tags/ || tags
-  photos: /photos/ || photo
+  #photos: /photos/ || photo
   #categories: /categories/ || th
   archives: /archives/ || archive
   #schedule: /schedule/ || calendar
