@@ -1,3 +1,14 @@
+---
+title: 阿里云体验之Terraform&RAM
+date: 2020-06-11 19:37:16
+tags:
+
+ - tech
+ - aliyun
+ - terraform
+ - ram
+---
+
 ### 背景
 
 [完整配置文件地址](https://github.com/ichengchao/terraform/blob/master/main_v2.tf)
