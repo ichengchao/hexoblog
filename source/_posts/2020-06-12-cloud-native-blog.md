@@ -101,4 +101,4 @@ jobs:
 
 <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_06_12_16_31_1591950660512.png" alt="Screen Shot 2020-06-12 at 16.30.23" style="zoom:50%;" />
 
-这样一个能速度快,而且高可用的Blog就搭建完了.我同时还设置了自定义域名+证书托管.这样一个自己域名的的https的blog就搞定了.成本几乎为零. 🌼
+这样一个速度快,而且高可用的Blog就搭建完了.我同时还设置了自定义域名+证书托管.这样一个自己域名的的https的blog就搞定了.成本几乎为零. 🌼
