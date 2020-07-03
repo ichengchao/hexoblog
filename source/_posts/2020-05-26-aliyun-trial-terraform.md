@@ -77,6 +77,8 @@ CLI的使用方式看[这里](https://github.com/aliyun/aliyun-cli),初始化完
 
 > 提示: 把配置文件直接拷贝到vscode中,可能会报错,不用管.那是因为目前插件还不支持最新语法,这个插件已经被[Terraform官方接管](https://www.hashicorp.com/blog/supporting-the-hashicorp-terraform-extension-for-visual-studio-code/),相信很快就会推出新的版本
 
+> update [2020-07-03]: vscode的terraform插件已经升级,支持了最新的terraform语法
+
 ```js
 # 这里使用的AK和region都是从profile里面来的
 provider "alicloud" {
@@ -112,6 +114,8 @@ regions = {
     "cn-hangzhou",
     ......
 ```
+
+这里有个小技巧,`terraform init`完后可以把对应的aliyun provider拷贝到`~/.terraform.d/`目录下,这样新建的terraform就不用再重新下载provider了.具体可以查看[官方文档](https://www.terraform.io/docs/commands/init.html#plugin-installation)
 
 ### 进入主题
 
