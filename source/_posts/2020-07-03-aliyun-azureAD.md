@@ -51,9 +51,9 @@ tags:
    ```
 
    
-
-<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_37_1594006662769.png" style="zoom:50%;border-style: dashed;" />
-
+   
+   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_37_1594006662769.png" style="zoom:50%;border-style: dashed;" />
+   
 6. 登录测试
 
 
@@ -85,7 +85,7 @@ Remove-AzureADServicePrincipal -objectid [ObjectID]
 
 1. 进入RAM的[SSO设置页面](https://ram.console.aliyun.com/providers),新建身份提供商,也就是Azure Active Directory
 
-<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_04_1594004686583.png" alt="Screen Shot 2020-07-06 at 11.03.58" style="zoom:50%;border-style: dashed;" />
+   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_04_1594004686583.png" alt="Screen Shot 2020-07-06 at 11.03.58" style="zoom:50%;border-style: dashed;" />
 
 2. 新建RAM角色并授权,AzureAD SSO过来的用户就是用这个角色登录到Aliyun的
 
