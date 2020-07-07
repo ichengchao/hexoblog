@@ -29,7 +29,7 @@ tags:
 
 4. 下载阿里云提供的[meta模板](https://signin.aliyun.com/saml-role/sp-metadata.xml),上传到这里,如图
 
-   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_12_43_1594010606821.png" style="zoom:50%;border-style: dashed;" />
+   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_12_43_1594010606821.png" style="zoom:50%;border-style: dashed;border-width: thin;" />
 
 5. 编辑`用户属性和声明`
 
@@ -52,7 +52,7 @@ tags:
 
    
    
-   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_37_1594006662769.png" style="zoom:50%;border-style: dashed;" />
+   ​	<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_37_1594006662769.png" style="zoom:50%;border-style: dashed;border-width: thin;" />
    
 6. 登录测试
 
@@ -64,7 +64,7 @@ tags:
 
 顺便介绍一下怎么删除应用,进入你要删除的应用程序
 
-<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_10_47_1594003641865.png" style="zoom:50%;border-style: dashed;" />
+<img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_10_47_1594003641865.png" style="zoom:50%;border-style: dashed;border-width: thin;" />
 
 如果这里的删除按钮是灰色,则可以使用PowerShell来删除
 
@@ -85,9 +85,9 @@ Remove-AzureADServicePrincipal -objectid [ObjectID]
 
 1. 进入RAM的[SSO设置页面](https://ram.console.aliyun.com/providers),新建身份提供商,也就是Azure Active Directory
 
-   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_04_1594004686583.png" alt="Screen Shot 2020-07-06 at 11.03.58" style="zoom:50%;border-style: dashed;" />
+   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_04_1594004686583.png" alt="Screen Shot 2020-07-06 at 11.03.58" style="zoom:50%;border-style: dashed;border-width: thin;" />
 
 2. 新建RAM角色并授权,AzureAD SSO过来的用户就是用这个角色登录到Aliyun的
 
-   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_07_1594004872761.png" alt="Screen Shot 2020-07-06 at 11.06.06" style="zoom:50%;border-style: dashed;" />
+   <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_07_06_11_07_1594004872761.png" alt="Screen Shot 2020-07-06 at 11.06.06" style="zoom:50%;border-style: dashed;border-width: thin;" />
 
