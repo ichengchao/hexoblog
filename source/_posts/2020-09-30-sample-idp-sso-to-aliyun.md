@@ -51,8 +51,8 @@ openssl pkcs8 -topk8 -inform PEM -outform DER -in saml.pem -out saml.pkcs8 -nocr
 
 修改name.chengchao.hellosaml.common.CommonConstants
 
-- PUBLIC_KEY_PATH配置成saml.crt的文件的绝对路径,比如: /Users/charles/test/saml.crt
-- PRIVATE_KEY_PATH配置成saml.pkcs8的文件的绝对路径,比如: "/Users/charles/test/saml.pkcs8"
+- PUBLIC_KEY_PATH配置成saml.crt的文件的绝对路径,比如: `/Users/charles/test/saml.crt`
+- PRIVATE_KEY_PATH配置成saml.pkcs8的文件的绝对路径,比如: `/Users/charles/test/saml.pkcs8`
 
 #### 配置阿里云
 
