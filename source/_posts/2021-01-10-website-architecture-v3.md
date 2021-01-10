@@ -8,7 +8,7 @@ tags:
 
 ---
 
-<img src="/Users/chengchao/Library/Application Support/typora-user-images/image-20210110160439663.png" alt="image-20210110160439663" style="zoom:50%;" />
+<img src="http://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/image-20210110160439663.png" alt="image-20210110160439663" style="zoom:50%;" />
 
 > 在[之前的基础](https://blog.chengchao.name/2018/07/03/website-architecture/)上做了些改进
 
@@ -18,7 +18,7 @@ tags:
 
 oss 开启版本控制(之前开启静态页面的bucket不支持版本控制)
 
-<img src="/Users/chengchao/Library/Application Support/typora-user-images/image-20210110163547121.png" alt="image-20210110163547121" style="zoom:50%;" />
+<img src="http://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/image-20210110163547121.png" alt="image-20210110163547121" style="zoom:50%;" />
 
 ### blog
 
