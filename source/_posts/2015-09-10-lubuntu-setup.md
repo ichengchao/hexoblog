@@ -18,6 +18,8 @@ tags:
 之前一直用ubuntu,但是感觉现在的ubuntu越来越臃肿,而且UI也越来越丑.于是就想找一个比较轻量级的版本.  
 发现[Lubuntu](http://lubuntu.net/)完全能满足我的要求
 
+update(2021-01-10): 可以用[xubuntu](https://xubuntu.org/)代替lubuntu
+
 ### 安装须知
 虚拟机中的安装方式就不详细介绍了,就是一步步往下点就行了.
 有一点需要注意的是:安装的时候语言选English,选中文的话会有乱码.
