@@ -9,7 +9,7 @@ tags:
 
 ---
 
-###安装mysql
+### 安装mysql
 
 docker版的[mysql](https://hub.docker.com/_/mysql),使用的版本是`5.7.35`
 
@@ -55,5 +55,42 @@ docker build -t "charles/springrun:v2" ./
 docker run --name myspring -it -d charles/springrun:v2
 git clone https://github.com/tldr-pages/tldr.git
 
+```
+
+### Dockerfile
+
+```dockerfile
+FROM openjdk:11
+LABEL maintainer="charles <me@chengchao.name>"
+RUN echo "\
+deb http://mirrors.aliyun.com/debian/ buster main non-free contrib\n\
+deb http://mirrors.aliyun.com/debian-security buster/updates main\n\
+deb http://mirrors.aliyun.com/debian/ buster-updates main non-free contrib\n\
+deb http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib\n\
+" >/etc/apt/sources.list
+ENV TZ=Asia/Shanghai
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+RUN apt-get update \
+&& apt-get install -y curl \
+&& apt-get install -y openssh-server \
+&& apt-get install -y procps \
+&& apt-get install -y net-tools \
+&& apt-get install -y vim \
+&& apt-get install -y git \
+&& apt-get install -y maven
+RUN echo "alias ll='ls -lh'" >> /root/.bashrc
+RUN wget https://ichengchao.oss-cn-hangzhou.aliyuncs.com/aliyunconfig/maven/settings.xml -O /etc/maven/settings.xml
+RUN wget https://ichengchao.oss-cn-hangzhou.aliyuncs.com/aliyunconfig/ossutil -O /usr/local/bin/ossutil
+RUN chmod +x /usr/local/bin/ossutil
+WORKDIR /root
+RUN mkdir .ssh && ssh-keygen -q -t rsa -N '' -f .ssh/id_rsa
+RUN touch .ssh/authorized_keys && chmod 664 .ssh/authorized_keys
+RUN echo "alias oss='ossutil'"
+RUN echo "\
+service ssh start\n\
+tail\n\
+" >/root/init.sh
+EXPOSE 8080
+CMD ["/bin/bash","/root/init.sh"]
 ```
 
