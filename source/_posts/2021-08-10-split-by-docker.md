@@ -60,13 +60,14 @@ git clone https://github.com/tldr-pages/tldr.git
 ### Dockerfile
 
 ```dockerfile
-FROM openjdk:11
+FROM ubuntu:20.04
 LABEL maintainer="charles <me@chengchao.name>"
 RUN echo "\
-deb http://mirrors.aliyun.com/debian/ buster main non-free contrib\n\
-deb http://mirrors.aliyun.com/debian-security buster/updates main\n\
-deb http://mirrors.aliyun.com/debian/ buster-updates main non-free contrib\n\
-deb http://mirrors.aliyun.com/debian/ buster-backports main non-free contrib\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse\n\
+deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse\n\
 " >/etc/apt/sources.list
 ENV TZ=Asia/Shanghai
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -77,6 +78,7 @@ RUN apt-get update \
 && apt-get install -y net-tools \
 && apt-get install -y vim \
 && apt-get install -y git \
+&& apt-get install -y openjdk-11-jdk \
 && apt-get install -y maven
 RUN echo "alias ll='ls -lh'" >> /root/.bashrc
 RUN wget https://ichengchao.oss-cn-hangzhou.aliyuncs.com/aliyunconfig/maven/settings.xml -O /etc/maven/settings.xml
