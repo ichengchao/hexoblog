@@ -39,3 +39,7 @@ ORDER  BY Count(*) DESC
 ### github.dev
 官网: https://github.dev  
 一个github官方推出的基于vscode的web编辑器,在已有的github项目中只要按一下 `.` 就能快速进入.不同于官方推出的[codespace](https://github.com/features/codespaces),这个web版本的编辑器不是运行在一个单独的容器内,所以不是所有插件都能安装,虽然不能和完整的IDE相比,但个人觉得已经非常好用了.最关键的是能和github无缝集成,修改完后可以直接提交,爽!这篇文章就是用这个写的^_^
+
+### keychron键盘
+官网: https://www.keychron.com/  
+性价比挺高的一个品牌,关键还挺好看,很多YouTuber大佬都在用,我最近入手了k3,到目前为止感受还不错.
