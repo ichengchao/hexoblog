@@ -8,6 +8,8 @@ tags:
 
 ---
 
+## 软件
+
 ### AskGit
 官网: https://askgit.com/  
 用SQL统计分析git的提交记录,特别好用,举几个例子.官方还有更加复杂的例子
@@ -30,6 +32,8 @@ ORDER  BY Count(*) DESC
 
 ```
 
+## 硬件
+
 ### Linux 发行版
 除了我们常见的ubuntu之外,推荐两个比较有名的发行版
 
@@ -45,3 +49,9 @@ ORDER  BY Count(*) DESC
 ### keychron键盘
 官网: https://www.keychron.com/  
 性价比挺高的一个品牌,关键还挺好看,很多YouTuber大佬都在用,我最近入手了k3,到目前为止感受还不错.
+
+## 文摘
+
+- [agriwebb CTO的金句](https://www.agriwebb.com/au/your-code-should-be-a-love-letter-to-the-next-developer/): Your code should be a love letter to the next developer
+- [软件10:1理论](https://www.ybrikman.com/writing/2018/08/12/the-10-to-1-rule-of-writing-and-programming/)
+
