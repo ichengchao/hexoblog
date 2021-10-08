@@ -77,6 +77,17 @@ public class InstanceRoleTest {
         CommonResponse response = client.getCommonResponse(request);
         String result = response.getData();
         System.out.println(result);
+      
+      
+      // ============================== kms test =================================
+      //        CommonRequest request = new CommonRequest();
+      //        request.setSysDomain("kms.cn-hangzhou.aliyuncs.com");
+      //        request.setSysVersion("2016-01-20");
+      //        request.setSysAction("GetSecretValue");
+      //        request.setSysProtocol(ProtocolType.HTTPS);
+      //        request.putQueryParameter("SecretName", "acs/ram/user/kmstest");
+      //        CommonResponse response = client.getCommonResponse(request);
+      //        String result = response.getData();
 
     }
 
