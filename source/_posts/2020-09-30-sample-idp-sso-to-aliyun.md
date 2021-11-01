@@ -11,6 +11,8 @@ tags:
 
 <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/blog/2020_09_30_11_39_1601437186773.png" alt="img" style="zoom:40%;" />
 
+> 增加了一个简易版的SAML SP的java实现,地址在[这里](https://github.com/ichengchao/hellosamlsp)
+
 ### 前言
 
 基本上是各大云产商的SSO都默认支持[SAML协议](https://en.wikipedia.org/wiki/Security_Assertion_Markup_Language). 但是由于配置比较复杂,很多人第一次接触的时候都是觉得比较难以理解.前段时间由于工作需要写了个支持saml协议的简易IDP.下面就来介绍一下怎么使用简易的IDP SSO到阿里云
