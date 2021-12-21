@@ -49,6 +49,11 @@ PROMPT='${ret_status} %{$fg[green]%}$USER@hz✭ %d%{$reset_color%} $(git_prompt_
 ### autojump
 目录跳转神器,`brew install autojump`,然后在.zshrc中的plugins中增加,比如plugins=(git autojump)  
 >现在有更简单的办法了,oh-my-zsh中已经默认包含了一个`z`的插件,直接开启就行了plugins=(git z),如果不习惯的话,可以把`alias j='z'`
+```
+自动补全的插件也好用: https://github.com/zsh-users/zsh-autosuggestions
+plugins=(git z zsh-autosuggestions)
+source ~/.zshrc
+```
 
 
 
