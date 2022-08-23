@@ -40,6 +40,13 @@ docker exec -it 02697b7bf225 bash
 
 # 如果是ubuntu的image
 docker run --name myubuntu -it -d ubuntu
+
+# 和宿主机的文件拷贝
+docker cp  <CONTAINER_ID>:SRC_PATH DEST_PATH
+docker cp  SRC_PATH <CONTAINER_ID>:DEST_PATH
+
+# 挂载宿主机的目录到容器中
+docker run -itd --name myubuntu -v /Users/charles/Desktop/mydata:/mydata  ubuntu
 ```
 
 启动后就能在宿主机的浏览器中直接访问`http://localhost:8000`就能看到nginx的欢迎页了.接着进入容器的命令行之后就跟普通的linux没什么区别了,可以看到系统是debian的8.0版本.
