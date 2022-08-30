@@ -50,3 +50,14 @@ jobs:
         run: |
           ossutil rm oss://chengchaoblog/ -a -r -f
           ossutil cp public oss://chengchaoblog -r -f
+      - name: notify to dingding
+        run: |
+          curl --location --request POST 'https://oapi.dingtalk.com/robot/send?access_token=${{ secrets.dingding_access_token }}' \
+          --header 'Content-Type: application/json' \
+          --data-raw '{
+              "msgtype": "markdown",
+              "markdown": {
+                  "title": "Blog Deploy",
+                  "text": "### Blog Deploy \n\n-----------------  \n\n **version:** ${{ steps.vars.outputs.tag }}  \n\n **message:** ${{ github.event.head_commit.message }}  \n\n **author:** ${{ github.actor }}"
+              }
+          }'
