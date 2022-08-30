@@ -58,6 +58,6 @@ jobs:
               "msgtype": "markdown",
               "markdown": {
                   "title": "Blog Deploy",
-                  "text": "### Blog Deploy \n\n-----------------  \n\n **version:** ${{ steps.vars.outputs.tag }}  \n\n **message:** ${{ github.event.head_commit.message }}  \n\n **author:** ${{ github.actor }}"
+                  "text": "### Blog Deploy \n\n-----------------   \n\n **message:** ${{ github.event.head_commit.message }}  \n\n **author:** ${{ github.actor }}"
               }
           }'
