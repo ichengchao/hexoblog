@@ -47,17 +47,15 @@ test:9f86d081884c7d659a2feaa0c55ad015a3bf4f1b2b0b822cd15d6c15b0f00a08
 结果:d37dffac8a59021d523b56de30c62f17642ea0d6e13c53c595da87fa3f7c0ccb
 ```
 
-**
-
 有了这些对齐的字段,后面的计算过程的每一步都是可以校验的
 
 
 
 # 概览
 
-AWS的签名过程总共分成四步:
-
 ![         签名版本 4 流程       ](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2022_12_29_1672299775.png)
+
+AWS的签名过程总共分成四步:
 
 1. 创建规划的请求结构: 就是把HTTP请求按照一定的规划组合在一起
 2. 将第一步请求体做sha256Hex摘要加上一些特定字段组合签名目标字符串
