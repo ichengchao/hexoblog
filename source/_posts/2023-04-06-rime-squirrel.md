@@ -117,13 +117,20 @@ ln -s rime-ice Rime
   ```yaml
   # 文件: squirrel.yaml 使用osascript -e 'id of app "iTerm2"' 查询对应的code
   app_options:
-    com.googlecode.iterm2:
-        ascii_mode: true
+  	com.googlecode.iterm2:
+    	ascii_mode: true
     org.eclipse.platform.ide:
-    		ascii_mode: true
+    	ascii_mode: true
   ```
 
   
+
+# 小技巧
+
+- 快速输入日期(rq),时间(sj),时间戳(ts)
+- 强大的V模式: 节气(vjq),星座(vxz),天气(vtq),麻将(vmjvmj)
+
+
 
 # 配置文件说明
 
