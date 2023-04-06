@@ -43,12 +43,12 @@ ln -s rime-ice Rime
 - 开启 “ 逗号，句号”翻页
 
   ```yaml
-  # 文件： default.yaml
+  # 文件: default.yaml
   # 需要额外注释掉方案中 recognizer/patterns 下的 url_2 选项（这个会覆盖掉句号的行为）
       - { when: paging, accept: comma, send: Page_Up }
       - { when: has_menu, accept: period, send: Page_Down }
   
-  # 文件： rime_ice.schema.yaml
+  # 文件: rime_ice.schema.yaml
   # 使用句号翻页时需要注释掉
   # url_2: "^[A-Za-z]+[.].*" 
   ```
@@ -56,6 +56,7 @@ ln -s rime-ice Rime
 - 使用macos_dark主题,我个性化了一点配置,主题列表在这里：https://github.com/NavisLab/rime-pifu
 
   ```yaml
+  # 文件: squirrel.yaml
   macos_dark:
         name: Mac仿原生暗色/macos_dark
         author: 一方
@@ -103,6 +104,26 @@ ln -s rime-ice Rime
   # 拼写设定
   speller:
   ```
+
+- 将CapsLock设置成中英文切换
+
+  ```yaml
+  # 文件: default.yaml
+  good_old_caps_lock: false
+  ```
+
+- 指定App默认英文
+
+  ```yaml
+  # 文件: squirrel.yaml 使用osascript -e 'id of app "iTerm2"' 查询对应的code
+  app_options:
+    com.googlecode.iterm2:
+        ascii_mode: true
+    org.eclipse.platform.ide:
+    		ascii_mode: true
+  ```
+
+  
 
 # 配置文件说明
 
