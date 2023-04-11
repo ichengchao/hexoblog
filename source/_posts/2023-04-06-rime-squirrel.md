@@ -10,7 +10,7 @@ tags:
 
 
 
-![image-20230406195300319](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2023_04_06_1680781985.png)
+![Screenshot 2023-04-11 at 10.32.18](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2023_04_11_1681180399.png)
 
 #  背景
 
@@ -97,7 +97,7 @@ ln -s rime-ice Rime
   reset: 1
   ```
 
-- 忽略翘舌音和后鼻音
+- 忽略翘舌音和后鼻音(可以只开启有限的忽略,因为忽略越多,选择的效率就会越低)
 
   ```yaml
   # 文件： rime_ice.schema.yaml 选择需要忽略的选项
@@ -117,10 +117,10 @@ ln -s rime-ice Rime
   ```yaml
   # 文件: squirrel.yaml 使用osascript -e 'id of app "iTerm2"' 查询对应的code
   app_options:
-  	com.googlecode.iterm2:
-    	ascii_mode: true
+    com.googlecode.iterm2:
+      ascii_mode: true
     org.eclipse.platform.ide:
-    	ascii_mode: true
+      ascii_mode: true
   ```
 
   
