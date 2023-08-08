@@ -105,7 +105,7 @@ curl --request GET 'http://localhost:8080/rest/users'
 # ]
 ```
 
-以上就是一个User类的定义,以及使用curl操作API的代码,是不是非常简单,对应的服务端的代码我不就展示了,可以用自己喜欢的技术栈实现一个就可以了,下面我们开始来构建对应的Terraform Provider
+以上就是一个User类的定义,以及使用curl操作API的代码,是不是非常简单,对应的服务端的代码我不就展示了,([代码在这里](https://github.com/ichengchao/terraformProviderServer))可以用自己喜欢的技术栈实现一个就可以了,下面我们开始来构建对应的Terraform Provider
 
 # 第二步: 构建Terraform provider
 
