@@ -97,4 +97,13 @@ private BuildProperties buildProperties;
 Instant instant = buildProperties.getTime();
 ```
 
-可以看到,整个过程比方式一要优雅很多,简单很多
+可以看到,整个过程比方式一要优雅很多,简单很多. 当然除了这个方式之外还有更加标准化的方式来获取这个信息
+
+```xml
+<!-- http://localhost:8080/actuator/info-->
+<dependency>
+  <groupId>org.springframework.boot</groupId>
+  <artifactId>spring-boot-starter-actuator</artifactId>
+</dependency>
+```
+
