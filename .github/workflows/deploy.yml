@@ -34,7 +34,7 @@ jobs:
         run: |
           npm i -g hexo-cli
           npm i
-          hexo
+          hexo version
       - name: Run a multi-line script
         run: |
           hexo generate
