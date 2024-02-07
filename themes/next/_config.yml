@@ -159,17 +159,10 @@ site_state: true
 # Key is the link label showing to end users.
 # Value before `||` delimiter is the target permalink, value after `||` delimiter is the name of Font Awesome icon.
 social:
-  GitHub: https://github.com/ichengchao || github
-  E-Mail: mailto:me@chengchao.name || envelope
-  Weibo: https://weibo.com/charleshz || weibo
-  #Google: https://plus.google.com/yourname || google
-  Twitter: https://twitter.com/ichengchao || twitter
-  #FB Page: https://www.facebook.com/yourname || facebook
-  #StackOverflow: https://stackoverflow.com/yourname || stack-overflow
-  #YouTube: https://youtube.com/yourname || youtube
-  #Instagram: https://instagram.com/yourname || instagram
-  #Skype: skype:yourname?call|chat || skype
-  RSS: /atom.xml || rss
+  GitHub: https://github.com/ichengchao || fab fa-github
+  E-Mail: mailto:me@chengchao.name || fa fa-envelope
+  Weibo: https://weibo.com/charleshz || fab fa-weibo
+  Twitter: https://twitter.com/ichengchao || fab fa-twitter
 
 social_icons:
   enable: true
@@ -369,10 +362,10 @@ codeblock:
   # Code Highlight theme
   # All available themes: https://theme-next.js.org/highlight/
   theme:
-    light: stackoverflow-dark
-    dark: stackoverflow-dark
+    light: github-dark-dimmed
+    dark: github-dark-dimmed
   prism:
-    light: prism
+    light: prism-dark
     dark: prism-dark
   # Add copy button on codeblock
   copy_button:
