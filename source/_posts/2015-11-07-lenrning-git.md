@@ -186,3 +186,17 @@ git log --pretty=format:"%h - %an, %ar : %s"
 
 git log --pretty=format:"%h %s" --graph
 ```
+
+默认会使用more或者less作为输出的分页器, 有时候用起来不是很方便, 可以把调整一下,类似aws cli也有这样的问题
+
+```
+# git 的关闭方式
+git config --global core.pager ''
+
+# aws cli的关闭方式 在~/.aws/config 文件中增加cli_pager=
+[default]
+cli_pager=
+region = us-west-1
+output = json
+```
+
