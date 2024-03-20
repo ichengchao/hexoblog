@@ -216,7 +216,8 @@ ARN: arn:aws:sts::433312851566:assumed-role/my-ec2-test-role/i-0b24c62fe9108cccc
 ![Screenshot 2024-03-12 at 23.31.31.png](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2024_03_20_1710898053.png)
 配置一个credential_process到CLI的config里面，这样CLI也能使用Roles Anywhere了
 ![image.png](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2024_03_20_1710898064.png)
-![image.png](https://intranetproxy.alipay.com/skylark/lark/0/2024/png/10939/1710259584969-d121f352-8706-4897-b6e6-a9db846007a5.png#clientId=u4e426d41-35b3-4&from=paste&height=139&id=ud5f3735b&originHeight=278&originWidth=1706&originalType=binary&ratio=2&rotation=0&showTitle=false&size=290655&status=done&style=none&taskId=u8c6dc47b-8b57-423e-975c-24e77b3ebcb&title=&width=853)
+![35170890-0c94-42fe-b8cb-3a11264b0c18](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2024_03_20_1710898849.png)
+
 用SDK的时候同样也能使用profile的方式去使用，以Java SDK为例：
 
 ```java
