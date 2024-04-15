@@ -199,7 +199,7 @@ ARN: arn:aws:sts::433312851566:assumed-role/my-ec2-test-role/i-0b24c62fe9108cccc
 **第一步**：在阿里云的数字证书管理服务中创建一个测试用的私有CA(当然也可以使用openssl来代替)，这里需要注意的一个点就是私钥算法需要选择RSA_2048及以上，**RSA_1024的算法AWS已经不支持**。启动子CA，并申请一张证书。完成后会拿到3个文件：
 
 1. CA的证书内容，点开子CA的「详情」里可以直接复制
-2. 下载由子CA签发的证书，选择「PEM」格式，包含两个文件：XXX.key 和 XXX.pem
+2. 下载由子CA签发的证书，选择「PEM」格式，压缩包里含两个文件：XXX.key 和 XXX.pem，分别对应--certificate和--private-key这两个参数
 
 ![Screenshot 2024-03-12 at 23.36.52.png](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2024_03_20_1710898033.png)![Screenshot 2024-03-12 at 21.48.26.png](https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2024_03_20_1710898042.png)
 **第二步**：把子CA的证书上传到AWS的RoleAnywhere作为信任端点，并创建对应的描述配置并加入对应的角色（可以是多个角色），这个就不多介绍，直接看AWS官方文档就可以
@@ -249,7 +249,25 @@ public class StsGetCallerIdentityExample {
 }
 ```
 
-看完上面这个例子，大家可能会有疑问，万一客户端的证书泄露了怎么办，其实也很简单，「Roles Anywhere」是支持CRL（certificate revocation list）的导入的，简单的说就是一串已经注销的的证书列表，这样在验证的时候如果命中了CRL就默认不通过。所以可以看到「Roles Anywhere」很巧妙的把证书那套完善的管理流程都嫁接过来了。
+看完上面这个例子，大家可能会有疑问，万一客户端的证书泄露了怎么办，其实也很简单，「Roles Anywhere」是支持CRL（certificate revocation list）的导入的，简单的说就是一串已经注销的的证书列表，这样在验证的时候如果命中了CRL就默认不通过。所以可以看到「Roles Anywhere」很巧妙的把证书那套完善的管理流程都嫁接过来了。看一下操作的步骤：在阿里云的CA控制台吊销一张证书（有一定的延时才能生效），并下载「CRL」文件，并导入到AWS中。
+
+```bash
+# 查看crl内容
+openssl crl -inform DER -in 1eee077a-fa4f-682a-8fe2-a31c8ecf3842.crl -text -noout
+
+# 转换成PEM的格式的crl文件
+echo "-----BEGIN X509 CRL-----" > mycrl.pem
+base64 -i 1eee077a-fa4f-682a-8fe2-a31c8ecf3842.crl>>mycrl.pem
+echo "-----END X509 CRL-----" >>mycrl.pem
+ 
+# 将crl文件导入aws的rolesanywhere中,导入后可以使用aws rolesanywhere list-crls去查看
+aws rolesanywhere import-crl --crl-data "$(base64 -i mycrl.pem)" --name charles-crl --trust-anchor-arn arn:aws:rolesanywhere:us-east-2:433312851566:trust-anchor/33141e10-5d6c-40e7-870d-1e6deca4bc55
+# enable
+aws rolesanywhere enable-crl --crl-id e57e5e93-6449-4cfc-af20-b3e1d84dd9b7
+
+```
+
+完成后再测试一下，没有意外的话原来的调用就失效了，证明已经成功注销了证书。
 
 ### 场景五：App端使用AWS服务
 
