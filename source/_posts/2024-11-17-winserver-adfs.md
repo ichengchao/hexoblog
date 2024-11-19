@@ -101,6 +101,20 @@ https://charles.com/FederationMetadata/2007-06/FederationMetadata.xml
 Get-ADUser -Identity "charles" -Properties * | Format-List
 ```
 
+**ADFS 转换语法**
+
+> 假设需要将aliyun-role-devops这个命名风格的用户组转换成阿里云上role-devops的角色
+
+```
+c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", Value =~ "^aliyun-(.*)"]
+=> issue(Type = "https://www.aliyun.com/SAML-Role/Attributes/Role", 
+         Value = "acs:ram::17642631404*****:role/" + regexreplace(c.Value, "^aliyun-", "") + ",acs:ram::17642631404*****:saml-provider/chengchaoIDP");
+```
+
+这个条件会检查组声明的类型是否为 groupsid，并使用正则表达式 ^aliyun-(.*) 匹配以 aliyun- 开头的组名，捕获组名的后缀部分（如 role-devops）,转换成阿里云SAML中role的格式"role-arn,idp-arn"
+
+
+
 **参考资料**
 
 - [[阿里云] 在Windows实例上搭建AD域并将客户端加入AD域](https://help.aliyun.com/zh/ecs/use-cases/ecs-instance-building-windows-active-directory-domain)
