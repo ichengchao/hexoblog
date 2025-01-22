@@ -11,7 +11,99 @@ tags:
 
 > 更新时间: 2025年01月22日18:15:02
 
-# 安装mysql
+
+
+# 主机nginx配置
+
+安装完nginx后,使用certbot安装https证书
+
+**init_nginx.sh**
+
+```bash
+#!/bin/bash
+
+# 更新系统软件包列表并安装Nginx
+echo "更新软件包列表并安装Nginx..."
+sudo apt update && sudo apt install -y nginx
+
+# 配置Nginx站点
+SITE_CONFIG="/etc/nginx/sites-available/chengchao.name"
+SITE_CONTENT="
+server {
+    root /var/www/html;
+
+    index index.html index.htm index.nginx-debian.html;
+
+    server_name chengchao.name www.chengchao.name;
+
+    # 配置完https再打开
+    #location / {
+    #    proxy_pass http://[ossname].oss-cn-hangzhou.aliyuncs.com/;
+    #}
+    location /springrun/ {
+        proxy_pass http://172.17.0.3:8080/springrun/;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+    }
+    location /myspringrun/ {
+        proxy_pass http://127.0.0.1:8080/springrun/;
+    }
+}
+"
+
+echo "创建Nginx站点配置文件..."
+echo "$SITE_CONTENT" | sudo tee $SITE_CONFIG > /dev/null
+
+# 创建符号链接以启用站点
+echo "启用Nginx站点..."
+sudo ln -s $SITE_CONFIG /etc/nginx/sites-enabled/
+
+# 测试Nginx配置
+echo "测试Nginx配置..."
+sudo nginx -t
+
+# 重新加载Nginx以应用更改
+echo "重新加载Nginx服务..."
+sudo systemctl reload nginx
+
+echo "Nginx配置完成！"
+```
+
+
+
+
+
+# Docker 配置
+
+## Docker安装配置
+
+```
+# 使用snap安装,所有配置和启动都不太一样
+sudo snap install docker
+
+# 配置文件添加mirror
+/var/snap/docker/current/config/daemon.json
+
+# 启动
+sudo snap start docker
+sudo snap stop docker
+sudo snap restart docker
+```
+
+**daemon.json**
+
+```
+{
+    "log-level":        "error",
+    "registry-mirrors": ["https://XXXXXXX.mirror.aliyuncs.com"]
+}
+```
+
+
+
+
+
+## 安装mysql
 
 mysqldocker下面需要三个文件:
 
@@ -55,7 +147,7 @@ mysqldump --default-character-set=utf8mb4 -uroot -h[host] --port=3306 -p[passwor
 
 
 
-## mysql启动
+### mysql启动
 
 ```
 docker run --name [名称] -e MYSQL_ROOT_PASSWORD="[密码]" -d [镜像名称:版本]
@@ -65,7 +157,7 @@ docker run --name [名称] -e MYSQL_ROOT_PASSWORD="[密码]" -d [镜像名称:�
 
 
 
-# 部署应用
+## 部署应用
 
 ```shell
 # 如果是在ARM的Mac构建的话需增加--platform=linux/amd64的参数
