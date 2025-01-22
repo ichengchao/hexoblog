@@ -99,6 +99,7 @@ RUN echo "alias ll='ls -lh'" >> /root/.bashrc
 写法很简单,基本上跟上面的例子差不多,有点小区别就是在Dockerfile里面的echo不需要加-e了.接着用docker build编译一个image出来
 
 ```
+# 如果在ARM的mac构建的话,需要增加--platform=linux/amd64
 docker build -t "charles/mynginx:v1" ./
 ```
 

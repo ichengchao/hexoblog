@@ -9,18 +9,33 @@ tags:
 
 ---
 
-### 安装mysql
+> 更新时间: 2025年01月22日18:15:02
 
-docker版的[mysql](https://hub.docker.com/_/mysql),使用的版本是`5.7.35`
+# 安装mysql
 
-```shell
-#拉取docker镜像,并启动
-docker pull mysql:5.7.35
-docker run --name [名称] -e MYSQL_ROOT_PASSWORD=[密码] -d mysql:5.7.35
+mysqldocker下面需要三个文件:
 
-#修改默认编码为utf8mb4
-vi /etc/mysql/conf.d/mysql.cnf
+**Dockerfile**
 
+```dockerfile
+FROM mysql:5.7.35
+
+# 设置环境变量
+ENV MYSQL_DATABASE=springrun
+
+# 复制 MySQL 配置文件到容器
+COPY my.cnf /etc/mysql/conf.d/
+
+# 复制 SQL 文件到容器的 /docker-entrypoint-initdb.d 目录（MySQL 会自动执行）
+COPY dump.sql /docker-entrypoint-initdb.d/
+
+# 设定容器启动时的字符集（可选）
+CMD ["mysqld", "--character-set-server=utf8mb4", "--collation-server=utf8mb4_unicode_ci"]
+```
+
+**my.cnf**
+
+```
 [mysqld]
 character-set-server = utf8mb4
 
@@ -29,26 +44,33 @@ default-character-set = utf8mb4
 
 [mysql]
 default-character-set = utf8mb4
+```
 
+**dump.sql**
 
-#命令行显示中文
-show variables like 'char%';
-set character_set_results=utf8mb4;
-
-#创建utf8mb4的database
-create database [库名称] default character set utf8mb4 collate utf8mb4_unicode_ci;
-
-#导出原有库的数据,指定编码
-mysqldump --default-character-set=utf8mb4 -u[用户名] -p [库名称] > dump.sql
-mysql> use [库名称]
-mysql> source /path/dump.sql
+```
+这个文件就是mysql的dump文件
+mysqldump --default-character-set=utf8mb4 -uroot -h[host] --port=3306 -p[password] springrun>./dump.sql
 ```
 
 
 
-### 部署应用
+## mysql启动
+
+```
+docker run --name [名称] -e MYSQL_ROOT_PASSWORD="[密码]" -d [镜像名称:版本]
+```
+
+
+
+
+
+# 部署应用
 
 ```shell
+# 如果是在ARM的Mac构建的话需增加--platform=linux/amd64的参数
+docker build --platform=linux/amd64 -t "charles/springrun:v2" ./
+
 # 根据dockerfile build image
 docker build -t "charles/springrun:v2" ./
 # 这里需要加-it
@@ -57,35 +79,40 @@ git clone https://github.com/tldr-pages/tldr.git
 
 ```
 
-### Dockerfile
+
+
+**Dockerfile**
 
 ```dockerfile
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 LABEL maintainer="charles <me@chengchao.name>"
-RUN echo "\
-deb http://mirrors.aliyun.com/ubuntu/ focal main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ focal-security main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ focal-updates main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ focal-proposed main restricted universe multiverse\n\
-deb http://mirrors.aliyun.com/ubuntu/ focal-backports main restricted universe multiverse\n\
-" >/etc/apt/sources.list
-ENV TZ=Asia/Shanghai
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+# 备份原始源配置文件
+RUN mv /etc/apt/sources.list.d/ubuntu.sources /etc/apt/sources.list.d/ubuntu.sources.bak
+
+# 使用新的 DEB822 格式创建阿里云的源
+RUN echo 'Types: deb\n\
+URIs: http://mirrors.aliyun.com/ubuntu/\n\
+Suites: noble noble-updates noble-security noble-backports\n\
+Components: main restricted universe multiverse\n\
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg\n' > /etc/apt/sources.list.d/aliyun.sources
+
 RUN apt-get update \
-&& apt-get install -y curl \
-&& apt-get install -y openssh-server \
-&& apt-get install -y procps \
-&& apt-get install -y net-tools \
-&& apt-get install -y vim \
-&& apt-get install -y git \
-&& apt-get install -y openjdk-11-jdk \
-&& apt-get install -y maven
+&& apt install -y curl \
+&& apt install -y openssh-server \
+&& apt install -y procps \
+&& apt install -y net-tools \
+&& apt install -y vim \
+&& apt install -y git \
+&& apt install -y openjdk-21-jdk \
+&& apt install -y maven
+
 RUN echo "alias ll='ls -lh'" >> /root/.bashrc
 RUN wget https://ichengchao.oss-cn-hangzhou.aliyuncs.com/aliyunconfig/maven/settings.xml -O /etc/maven/settings.xml
 RUN wget https://ichengchao.oss-cn-hangzhou.aliyuncs.com/aliyunconfig/ossutil -O /usr/local/bin/ossutil
 RUN chmod +x /usr/local/bin/ossutil
 WORKDIR /root
-RUN mkdir .ssh && ssh-keygen -q -t rsa -N '' -f .ssh/id_rsa
+RUN [ -d .ssh ] || mkdir .ssh
+RUN ssh-keygen -q -t rsa -N '' -f .ssh/id_rsa
 RUN touch .ssh/authorized_keys && chmod 664 .ssh/authorized_keys
 RUN echo "alias oss='ossutil'"
 RUN echo "\
