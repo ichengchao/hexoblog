@@ -12,7 +12,7 @@ tags:
 
 # 引言
 
-之前用 [Java 实现了一个最简单的 MCP Server](https://blog.chengchao.name/2025/04/02/write-a-sample-mcp-server/)。为了更全面地体验 MCP 协议的完整链路，继续用 Java 编写一个最简单的 MCP Client，搭配Cloudflare的AI Gateway能看到整个MCP的交互过程。
+之前用 [Java 实现了一个最简单的 MCP Server](./2025/04/02/write-a-sample-mcp-server/)。为了更全面地体验 MCP 协议的完整链路，继续用 Java 编写一个最简单的 MCP Client，搭配Cloudflare的AI Gateway能看到整个MCP的交互过程。
 
 
 
