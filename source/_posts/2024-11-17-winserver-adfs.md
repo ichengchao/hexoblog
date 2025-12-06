@@ -115,7 +115,7 @@ c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/windowsaccou
  => issue(Type = "https://www.aliyun.com/SAML-Role/Attributes/Role", Value = "acs:ram::1483522515186789:role/winserveradfs-testrole,acs:ram::1483522515186789:saml-provider/nxp-winserver-adfs");
 ```
 
-*接着测试一个更加实际的例子**
+**接着测试一个更加实际的例子**
 
 1. 使用用户组来区分角色, 比如A,B两个都属于aliyun-admingroup用户组. 在阿里云上也新建一个admingroup的角色, 第一步增加一个"GetADGroup"的规则,这样就能把Group添加到声明中,这个是为了后面role从这个group中提取角色名称
 
@@ -159,7 +159,7 @@ https://charles.com/adfs/ls/idpinitiatedSignOn.htm
 
 # 进阶:用户同步
 
-### 方案一
+## 方案一
 
 用第三方 IdP 做中转（推荐）
 
@@ -167,15 +167,15 @@ https://charles.com/adfs/ls/idpinitiatedSignOn.htm
 
 在内网部署 Entra Connect（原 Azure AD Connect），它以代理方式从本地 AD 同步用户到 Entra ID，只需要出站 443，不需要对外开放 LDAP
 
-### 方案二
+## 方案二
 
 用阿里云的 IDaaS作为桥接, 通过专线 / VPN / CEN 等私网链路让 IDaaS 访问你内网的 AD（还是 LDAP 协议，但只走专线/VPN，不暴露公网）, 适合在阿里云上部署AD或者已经和阿里云专线打通的客户
 
-### 方案三
+## 方案三
 
 自己写一个脚本用于桥接AD (ldap)的读取和SCIM推送, 先测试第一步, 读取LDAP的数据
 
-#### test_ldap_read_users.py
+### test_ldap_read_users.py
 
 ```python
 #!/usr/bin/env python3
@@ -1063,9 +1063,6 @@ if __name__ == "__main__":
 ```
 
 
-
-
-
 # 附录
 
 **将证书导入到“受信任的根证书颁发机构", 这样访问adfs的时候就不会有警告了  (非必选)**
@@ -1100,7 +1097,7 @@ c:[Type == "http://schemas.microsoft.com/ws/2008/06/identity/claims/groupsid", V
 
 
 
-**参考资料**
+# 参考资料
 
 - [[阿里云] 在Windows实例上搭建AD域并将客户端加入AD域](https://help.aliyun.com/zh/ecs/use-cases/ecs-instance-building-windows-active-directory-domain)
 - [[阿里云] 使用ADFS 进行角色SSO的示例](https://help.aliyun.com/zh/ram/user-guide/implement-role-based-sso-from-ad-fs)
