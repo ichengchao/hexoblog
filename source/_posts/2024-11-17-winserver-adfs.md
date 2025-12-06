@@ -177,6 +177,9 @@ https://charles.com/adfs/ls/idpinitiatedSignOn.htm
 
 ### test_ldap_read_users.py
 
+<details>
+<summary>点击展开查看代码</summary>
+
 ```python
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
@@ -361,7 +364,12 @@ if __name__ == "__main__":
     main()
 ```
 
-#### ad_to_cloudsso_scim_full.py : 支持同步用户和用户组
+</details>
+
+### ad_to_cloudsso_scim_full.py : 支持同步用户和用户组
+
+<details>
+<summary>点击展开查看代码</summary>
 
 ```python
 #!/usr/bin/env python3
@@ -1062,6 +1070,7 @@ if __name__ == "__main__":
     main()
 ```
 
+</details>
 
 # 附录
 

@@ -3,7 +3,7 @@
   word-wrap();
 
   +desktop-large() {
-    font-size: $font-size-medium;
+    font-size: $font-size-large;
   }
 
   +desktop() {
@@ -45,8 +45,13 @@
     margin-left: 4px;
   }
 
+  figure:not(.highlight) {
+    margin: 0 auto 20px;
+  }
+
   // https://github.com/hexojs/hexo-renderer-marked/pull/264
-  img + figcaption, .fancybox + figcaption {
+  // https://github.com/next-theme/hexo-next-exif
+  figure:not(.highlight) figcaption {
     color: $grey-dark;
     font-size: $font-size-small;
     font-weight: bold;
