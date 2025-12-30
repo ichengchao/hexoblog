@@ -18,7 +18,7 @@ tags:
 
 > 假设域为: charles.com
 
-配置AD的过程非常简单,只要一步步按照默认的就行了.
+配置AD的过程非常简单,只要一步步按照默认的就行了.**这里提醒一点,安装完成后把AD的密码策略修改成无限时长,默认是42天过期,会导致Admin登录不了**
 
 <img src="https://chengchaosite.oss-cn-hangzhou.aliyuncs.com/resource-container/uPic/2024_11_17_1731812794.png" alt="image-20241117110630411" style="zoom:50%;" />
 
